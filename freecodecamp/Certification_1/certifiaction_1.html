@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="certification_1.css">
+    <title>Personal Information Form</title>
+    
+</head>
+<body>
+    <h1 id="title">Personal Information Form</h1>
+    <p id="description">Complete de follow form</p>
+    
+    <form id="survey-form" action="">
+        <fieldset>
+            <label for="name" id="name-label">
+                Name: 
+                <input type="text" id="name" name="name" required placeholder="Bondor Ricardo-Filipe">
+            </label>
+
+            <label for="email" id="email-label">
+                Email (optional): 
+                <input name="email" type="email" id="email" value="" placeholder="bond.ric@gmail.com" required>
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <label for="dropdown">
+                Select age: 
+                <select id="dropdown" name="age" required>
+                    <option value="">select one</option>
+                    <option value="1">14-18</option>
+                    <option value="2">18-24</option>
+                    <option value="3">24-80</option>
+                </select>
+            </label>
+            
+        </fieldset>
+
+        <fieldset>
+            <p class="question">Gender: </p>
+            <label>
+                <input  type="radio"  checked name="sex" value="male"> Male
+            </label>
+
+            <label >
+                <input type="radio" name="sex" value="female"> Female
+            </label>
+
+        </fieldset>
+
+        <fieldset>
+            <label for="country">
+                Country:
+                <input id="country" type="text" required placeholder="Romania">
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <p class="question">Why do you code?</p>
+            <label>
+                <input value="1" type="checkbox"> It's easy
+            </label>
+
+            <label>
+                <input value="2" type="checkbox"> It's fun
+            </label>
+
+            <label>
+                <input value="3" type="checkbox"> I don't have anything to do
+            </label>
+            <label>
+                <input value="4" type="checkbox"> For school
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <label for="number" id="number-label">
+                How many hours do you code per day?
+                <input name="code_time" id="number" type="number" min="0" max="24" required placeholder="2">
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <label>
+                Tell us something about you: 
+                <textarea rows="5" cols="30" placeholder="I love to play piano."></textarea>
+            </label>
+        </fieldset>
+
+        <p id="description">Thanks for participate!  </p>
+
+        <button id="submit" type="submit" value="Submit">Submit</button>
+    </form>
+    
+</body>
+</html>
