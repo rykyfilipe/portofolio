@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="container">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form action="POST">
+                <input type="text" placeholder="Username" id="username">
+                <div class="password-container">
+                    <input type="password" placeholder="Password" id="password">
+                    <span id="togglePassword">👁️</span>
+                </div>
+                <button class="submit-button" type="submit">Log in</button>
+            </form>
+            <a href="#">Forgot username or password?</a>
+        </div>
+    </section>
+    
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            let passwordInput = document.getElementById('password');
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+        });
+
+        document.querySelector('.submit-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            let inputs = document.querySelectorAll('.login-container form input');
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    input.style.border = '2px solid red';
+                } else {
+                    input.style.border = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
