@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-uri pe zile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .calendar {
+            display: flex;
+            gap: 10px;
+        }
+        .day {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            width: 100px;
+            text-align: center;
+        }
+        .tasks {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 150px;
+        }
+        .day:hover .tasks {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar" id="calendar"></div>
+    
+    <script>
+        const tasksByDay = {
+            "Luni": ["Meeting", "Lucru la proiect"],
+            "Marti": ["Curs online", "Antrenament"],
+            "Miercuri": ["Întâlnire echipă", "Citit"],
+            "Joi": ["Gătit", "Plimbare"],
+            "Vineri": ["Lucru remote", "Film"],
+            "Sambata": ["Curățenie", "Relaxare"],
+            "Duminica": ["Excursie", "Timp cu familia"]
+        };
+        
+        const calendar = document.getElementById("calendar");
+        
+        for (const [day, tasks] of Object.entries(tasksByDay)) {
+            const dayDiv = document.createElement("div");
+            dayDiv.classList.add("day");
+            dayDiv.textContent = day;
+            
+            const taskDiv = document.createElement("div");
+            taskDiv.classList.add("tasks");
+            taskDiv.innerHTML = tasks.map(task => `<div>${task}</div>`).join("");
+            
+            dayDiv.appendChild(taskDiv);
+            calendar.appendChild(dayDiv);
+        }
+    </script>
+</body>
+</html>

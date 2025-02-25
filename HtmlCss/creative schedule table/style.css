@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f4;
+}
+
+.container {
+    background: crimson;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.week-title {
+    cursor: pointer;
+    padding: 10px;
+    background: white;
+    color: crimson;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.week-title:hover {
+    background: lightgray;
+}
+
+/* Lista de zile */
+.days-list {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    background: white;
+    color: black;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.days-list li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Clasa care activează animația */
+.show-days {
+    max-height: 200px; /* Suficient pentru a afișa toate zilele */
+}
