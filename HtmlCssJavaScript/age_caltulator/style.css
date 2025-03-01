@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Adăugare fundal ușor gri pentru contrast */
+}
+
+.container {
+    width: 400px;
+    height: 220px;
+
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, 
+                rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px; /* Mai mult spațiu interior */
+}
+
+.container h1 {
+    font-size: 28px;
+    text-align: center;
+}
+
+.container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container div h2 {
+    padding: 10px 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.container div input {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 35px;
+    width: 220px;
+    padding: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.container div button {
+    border: 1px solid #333;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    padding: 10px 25px;
+    margin-top: 20px;
+    font-size: 14px;
+    transition: 0.3s ease-in-out;
+}
+
+.container div button:hover {
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+}
+
+.container p {
+    font-size: 12px;
+    color: #666;
+}
