@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #0F0F0F;
+    
+}
+
+header {
+    width: 100%;
+    background-color: #0F0F0F;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-navbar {
+    width: 100%;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.left-part {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.nav-button {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.nav-button img {
+    width: 40px;
+    height: 40px;
+    filter: invert(6%);
+}
+
+.to-home {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.to-home img {
+    width: 40px;
+    height: auto;
+}
+
+.to-home p {
+    display: none;
+}
+
+.middle-part {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.middle-part form {
+    display: flex;
+    width: 100%;
+}
+
+.search-bar {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #303030;
+    background-color: #121212;
+    color: white;
+    padding: 0 10px;
+    font-size: 16px;
+    border-radius: 40px 0 0 40px;
+}
+
+.search-button {
+    width: 64px;
+    height: 40px;
+    background-color: #222;
+    border: 1px solid #303030;
+    border-left: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 40px 40px 0;
+    cursor: pointer;
+}
+
+.search-button img {
+    width: 24px;
+    filter: invert(100%);
+}
+
+.microphone-button {
+    width: 40px;
+    height: 40px;
+    background-color: #222;
+    border: none;
+    border-radius: 50%;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.microphone-button img {
+    width: 25px;
+    filter: invert(100%);
+}
+
+.right-part {
+    display: flex;
+    align-items: center;
+}
+
+.notifications-button,
+.profile-button {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.notifications-button img,
+.profile-button img {
+    width: 24px;
+    filter: invert(100%);
+}
+
+/* Hover effects */
+.nav-button:hover,
+.microphone-button:hover,
+.notifications-button:hover,
+.profile-button:hover {
+    background-color: #303030;
+    border-radius: 50%;
+}
