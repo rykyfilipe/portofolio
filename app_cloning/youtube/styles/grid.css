@@ -79,7 +79,10 @@
     .grid {
         padding-left: 20px;
         padding-right: 20px;
+
         justify-content: center;
+
+        transform: translateX(-30px);
     }
 
     .grid-element {
@@ -92,10 +95,12 @@
     }
 
     .side-navbar{
-        left: -80px;
+        position: absolute;
+        transform: translateX(-100%);
     }
 
     .side-navbar.active {
-        left: 0;
+        position: absolute;
+        transform: translateX(0);
     }
 }
