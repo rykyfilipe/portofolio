@@ -100,7 +100,8 @@
     }
 
     .side-navbar.active {
-        position: absolute;
+        position: relative;
+        margin-right: 30px;
         transform: translateX(0);
     }
 }
