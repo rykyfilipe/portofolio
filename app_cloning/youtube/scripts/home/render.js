@@ -1,7 +1,7 @@
-import { videos} from '../../data/videos.js';
 import { accounts, getAccount } from '../../data/account.js';
+import { getTime } from '../../data/videos.js';
 
-export function renderVideosGrid(){
+export function renderVideosGrid(videos){
     
     let htmlGrid = '';
     console.log(videos);
@@ -11,7 +11,7 @@ export function renderVideosGrid(){
 
         if (!account) {
             console.warn(`No account found for accountId: ${video.accountId}`);
-            return; // Skip this video if no account is found
+            return; 
         }
 
         const html = `
@@ -24,9 +24,9 @@ export function renderVideosGrid(){
                         <div class="account-detailes">
                             <p class="name">${account.name}</p>
                             <p class="views">
-                                ${video.views} views
+                                ${video.views}
                                 ~
-                                ${video.hoursFromPost} hours ago
+                                ${getTime(video.id)}
                             </p>
                         </div>
                     </div>

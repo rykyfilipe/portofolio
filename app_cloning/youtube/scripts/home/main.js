@@ -4,7 +4,7 @@ import { renderVideosGrid } from '../home/render.js';
 async function main() {
     try{
         await getVideos();
-        await renderVideosGrid();
+        await renderVideosGrid(videos);
     }
     catch(error){
         console.log(error);
