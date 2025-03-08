@@ -12,40 +12,49 @@ document.addEventListener("DOMContentLoaded", function () {
         sideNavbarElements.forEach(element => element.classList.toggle("active"));
     });
 
-    document.querySelector('.search-button')
-        .addEventListener('click', (event) => {
-            event.preventDefault(); 
-            const searchQuery = document.querySelector('.search-bar').value.toLowerCase();
+    const form = document.querySelector('.js-search-form');
 
-            
-            const filteredVideos = videos.filter(video => 
-                video.title.includes(searchQuery)
-            );
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
+        const searchQuery = document.querySelector('.search-bar').value;
+
+        fetch('http://localhost:3000/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `query=${encodeURIComponent(searchQuery)}`,
+        })
+        .then(response => response.text())  
+        .then(data => {
+            const filteredVideos = JSON.parse(data);
             renderVideosGrid(filteredVideos);
+        })
+        .catch(error => {
+            console.error('Eroare:', error);
         });
+    });
 
-        document.querySelectorAll('.js-video-click').forEach(element => {
-            console.log("Found clickable element:", element);
-            
-            element.addEventListener('click', event => {
-                console.log("Click event fired!");
-                console.log("Element clicked:", event.currentTarget);
-                console.log("Data attributes:", event.currentTarget.dataset);
-        
-                
-                const videoId = event.currentTarget.dataset.videoId;
-        
-                if (videoId) {
-                    localStorage.setItem('clickedVideoId', videoId);
-                    console.log("Just set video ID:", localStorage.getItem('clickedVideoId'));
-                } else {
-                    console.warn("No video ID found in dataset!");
-                }
 
-                event.preventDefault();
-            });
-        });
+    const grid = document.querySelector('.grid');
+
+    grid.addEventListener('click', function (event) {
         
+        if (event.target.closest('.js-video-click')) {
+            const data = event.target.closest('.js-video-click').dataset.videoId;
+            console.log('Video ID:', data);  
+            fetch('http://localhost:3000/sentVideoId', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ videoId: data })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Succes:', data))
+            .catch((error) => console.error('Eroare:', error));
+        }
+    });
         
 });

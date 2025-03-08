@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
 app.use(cors()); 
 
 const videos = [
@@ -140,11 +141,38 @@ app.get('/accounts', (req, res) => {
         requestedUrl: req.originalUrl,
         method: req.method
     });
-
+    
     res.json(accounts);
 });
 
+app.post('/sentVideoId', (req, res) => {
+        
+    console.log("Request received:", {
+        ip: req.ip,
+        userAgent: req.get('User-Agent'),
+        requestedUrl: req.originalUrl,
+        method: req.method
+    });
+    res.json({ message: 'Datele au fost primite cu succes!', receivedData: req.body });
+    console.log(req.body);
+});
+
+app.use(express.urlencoded({ extended: true }));
+
+
+
+app.post('/search', (req, res) => {
+    
+    const searchQuery = req.body.query;
+
+    console.log('Căutare:', searchQuery);
+    res.send(findVideos(searchQuery));
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
+function findVideos(string){
+    return videos.filter(video => video.title.includes(string));
+}

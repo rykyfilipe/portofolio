@@ -5,9 +5,10 @@
     
     position: relative;
     top: 80px;
+    left: calc(80px);
     padding-right: 30px;
     padding-left: 30px;
-    width: 100%;
+    width: calc(100% - 80px);
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -81,8 +82,8 @@
         padding-right: 20px;
 
         justify-content: center;
-
-        transform: translateX(-30px);
+        width: 100%;
+        left: 0;
     }
 
     .grid-element {
@@ -101,7 +102,6 @@
 
     .side-navbar.active {
         position: relative;
-        margin-right: 30px;
         transform: translateX(0);
     }
 }

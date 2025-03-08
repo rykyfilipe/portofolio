@@ -22,14 +22,13 @@
                 </a>
             </div>
             <div class="middle-part">
-                <form action="" onsubmit="return false;">
-                   
-                        <input type="text" class="search-bar">
-                        <button type="submit" class="search-button">
-                            <img src="../assets/images/search-icon.png" alt="">
-                        </button>
-                   
+                <form action="http://localhost:3000/search" method="post" class="js-search-form">
+                    <input type="text" class="search-bar" name="query" placeholder="Căutare...">
+                    <button type="submit" class="search-button">
+                        <img src="../assets/images/search-icon.png" alt="">
+                    </button>
                 </form>
+                
                 <button class="microphone-button">
                     <img src="../assets/images/microphone.png" alt="">
                 </button>
