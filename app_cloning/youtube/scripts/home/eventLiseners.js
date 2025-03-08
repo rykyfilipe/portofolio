@@ -24,4 +24,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
             renderVideosGrid(filteredVideos);
         });
+
+        document.querySelectorAll('.js-video-click').forEach(element => {
+            console.log("Found clickable element:", element);
+            
+            element.addEventListener('click', event => {
+                console.log("Click event fired!");
+                console.log("Element clicked:", event.currentTarget);
+                console.log("Data attributes:", event.currentTarget.dataset);
+        
+                
+                const videoId = event.currentTarget.dataset.videoId;
+        
+                if (videoId) {
+                    localStorage.setItem('clickedVideoId', videoId);
+                    console.log("Just set video ID:", localStorage.getItem('clickedVideoId'));
+                } else {
+                    console.warn("No video ID found in dataset!");
+                }
+
+                event.preventDefault();
+            });
+        });
+        
+        
 });

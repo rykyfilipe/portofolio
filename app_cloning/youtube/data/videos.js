@@ -4,7 +4,7 @@ export const videos = [];
 
 export async function getVideos() {
     try {    
-        const response = await fetch('http://127.0.0.1:3658/m1/831093-810841-default/video');
+        const response = await fetch('http://localhost:3000/videos');
         
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -20,12 +20,38 @@ export async function getVideos() {
     }
 }   
 
-export function getTime(videoId) {
-    if (!videos[videoId]) {
+
+export function getFormattedViews(videoId) {
+    const video = videos.find(video => video.id === videoId);
+    
+    if (!video) {
         return "Invalid video ID";
     }
+    
+    let views = video.secondsFromPost;
 
-    let seconds = videos[videoId].secondsFromPost;
+    if (views >= 1_000_000_000) {
+        return `${(views / 1_000_000_000).toFixed(1)}B views`;
+    } else if (views >= 1_000_000) {
+        return `${(views / 1_000_000).toFixed(1)}M views`;
+    } else if (views >= 1_000) {
+        return `${Math.floor(views / 1_000)}K views`;
+    } else if (views >= 1){
+        return `${views} views`; 
+    }
+    else
+        return `1 view`; 
+}
+
+
+export function getFormattedTime(videoId) {
+    const video = videos.find(video => video.id === videoId);
+    
+    if (!video) {
+        return "Invalid video ID";
+    }
+    
+    let seconds = video.secondsFromPost;
 
     
     if (seconds > 1000000) {

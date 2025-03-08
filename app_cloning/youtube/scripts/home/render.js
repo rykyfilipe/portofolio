@@ -1,10 +1,9 @@
 import { accounts, getAccount } from '../../data/account.js';
-import { getTime } from '../../data/videos.js';
+import { getFormattedTime ,getFormattedViews } from '../../data/videos.js';
 
 export function renderVideosGrid(videos){
     
     let htmlGrid = '';
-    console.log(videos);
 
     videos.forEach(video => {
         const account = getAccount(video.accountId);
@@ -16,17 +15,19 @@ export function renderVideosGrid(videos){
 
         const html = `
             <div class="grid-element">
-                <img class="element-image" src="https://picsum.photos/400/250?random=${Math.floor(Math.random() * 1000)}" alt="">
-                <div class="info">
+                <a href="video.html" class="js-video-click" data-video-id="${video.id} ">
+                    <img class="element-image" src="https://picsum.photos/400/250?random=${Math.floor(Math.random() * 1000)}" alt="">
+                </a>
+                <div class="info">       
                     <img class="element-profile-image" src="${account.profileImage}" alt="${account.name}">
                     <div class="description">
                         <p class="title">${video.title}</p>
                         <div class="account-detailes">
                             <p class="name">${account.name}</p>
                             <p class="views">
-                                ${video.views}
+                                ${getFormattedViews(video.id)}
                                 ~
-                                ${getTime(video.id)}
+                                ${getFormattedTime(video.id)}
                             </p>
                         </div>
                     </div>
