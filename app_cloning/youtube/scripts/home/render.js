@@ -21,7 +21,9 @@ export function renderVideosGrid(videos){
                 <div class="info">       
                     <img class="element-profile-image" src="${account.profileImage}" alt="${account.name}">
                     <div class="description">
-                        <p class="title">${video.title}</p>
+                        <a href="video.html" class="js-video-click" data-video-id="${video.id}">
+                            <p class="title">${video.title}</p>
+                        </a>
                         <div class="account-detailes">
                             <p class="name">${account.name}</p>
                             <p class="views">

@@ -21,7 +21,7 @@
 
 .side-navbar.active{
     width: 200px;
-    position: sticky;
+    position: absolute;
 }
 
 .nav-link{
@@ -64,4 +64,24 @@
 
 .nav-link:hover{
     background-color: #303030;
+}
+@media (max-width: 768px) {
+    .grid {
+        padding-left: 20px;
+        padding-right: 20px;
+
+        justify-content: center;
+        width: 100%;
+        left: 0;
+    }
+
+    .side-navbar{
+        position: absolute;
+        transform: translateX(-100%);
+    }
+
+    .side-navbar.active {
+        position: absolute;
+        transform: translateX(0);
+    }
 }

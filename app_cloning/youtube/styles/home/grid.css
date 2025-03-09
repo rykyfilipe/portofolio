@@ -38,7 +38,9 @@
     display: flex;
     margin-top: 10px;
 }
-
+.js-video-click{
+    text-decoration: none;
+}
 .element-profile-image {
     width: 40px;
     height: 40px;
@@ -101,7 +103,7 @@
     }
 
     .side-navbar.active {
-        position: relative;
+        position: absolute;
         transform: translateX(0);
     }
 }

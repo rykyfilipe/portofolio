@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/global/header.css">
     <link rel="icon" type="image/x-icon" href="../assets/icons/logo.png">
-    <link rel="stylesheet" href="../styles/side.css">
-    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/global/side.css">
+    <link rel="stylesheet" href="../styles/video/grid.css">
     <title>Youtube</title>
 </head>
 <body>
@@ -21,13 +22,11 @@
                 </a>
             </div>
             <div class="middle-part">
-                <form action="" onsubmit="return false;">
-                   
-                        <input type="text" class="search-bar">
-                        <button type="submit" class="search-button">
-                            <img src="../assets/images/search-icon.png" alt="">
-                        </button>
-                   
+                <form action="http://localhost:3000/search" method="post" class="js-search-form">
+                    <input type="text" class="search-bar" name="query" placeholder="Căutare...">
+                    <button type="submit" class="search-button">
+                        <img src="../assets/images/search-icon.png" alt="">
+                    </button>
                 </form>
                 <button class="microphone-button">
                     <img src="../assets/images/microphone.png" alt="">
@@ -43,6 +42,46 @@
             </div>
         </nav>
     </header>
+    <section class="container">
+        <nav class="side-navbar">
+            <a href="" class="nav-link">
+                <img src="../assets/images/home.png" alt="">
+                Home
+            </a>
+            <a href="" class="nav-link">
+                <img src="../assets/images/shorts.png" alt="">
+                Shorts
+            </a>
+            <a href="" class="nav-link">
+                <img src="../assets/images/subscription.png" alt="">
+                Subscribtion
+            </a>
+            <a href="" class="nav-link">
+                <img src="../assets/images/profile.png" alt="">
+                You
+            </a>
+        </nav>
+
+        <div class="grid">
+            <div class="video-container">
+                <video class="js-video" controls ></video>
+                <div class="video-information">
+
+                </div>
+            </div>
+
+            <div class="grid-videos">
+
+            </div>
+            
+            <div class="comments">
+
+            </div>
+        </div>
+
+    </section>
+
     <script type="module" src="../scripts/video/render.js"></script>
+    <script type="module" src="../scripts/globalEventLisener.js"></script>
 </body>
 </html>

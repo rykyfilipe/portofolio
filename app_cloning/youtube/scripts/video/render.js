@@ -1,13 +1,31 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    const videoData = localStorage.getItem('videoData');
 
-    const videoId = localStorage.getItem('clickedVideoId');
-    console.log("Retrieved video ID:", videoId);
-    
-    
-    if (videoId) {
-        console.log("Video ID found:", videoId);
+    if (!videoData) {
+        console.error('Nu există date video în localStorage.');
+        return;
+    }
+
+    try {
+        const parsedData = JSON.parse(videoData);
+
+        if (!parsedData.video) {
+            console.error('Nu există un link video valid în datele salvate.');
+            return;
+        }
+
+        const video = document.querySelector('.js-video');
+
+        if (!video) {
+            console.error('Elementul video nu a fost găsit în DOM.');
+            return;
+        }
+
+        video.src = parsedData.video;
         
-    } else {
-        console.log("No video ID found in localStorage");
+        video.load();
+       
+    } catch (error) {
+        console.error('Eroare la parsarea datelor video:', error);
     }
 });
