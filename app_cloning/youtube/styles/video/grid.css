@@ -84,12 +84,13 @@
 
 }
 
-.profile-info{
+.profile-container .profile-info{
 
-    width: 45%;
+    width: 50%;
     height: 40px;
-
     display: flex;
+
+    width: 100%;
 }
 
 .profile-image{
@@ -106,8 +107,8 @@
     justify-content: space-evenly;
 
     margin-left: 10px;
-
-    height: 40px;
+    max-width: calc(100% - 120px);
+    width: 150px;
 }
 
 .profile-name{
@@ -119,6 +120,10 @@
 
 .profile-subscribes{
     font-size: 10px;
+    width: fit-content;
+    white-space: nowrap;       
+    overflow: hidden;          
+    text-overflow: ellipsis;
 }
 
 .profile-name,
@@ -155,7 +160,7 @@
     align-self: center;
     justify-content: flex-end;
 
-    width: 100%;
+    width: 40%;
     height: 40px;
 
 }

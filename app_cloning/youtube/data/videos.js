@@ -1,5 +1,3 @@
-import { accounts} from "./account.js";
-
 export const videos = [];
 
 export async function getVideos() {
@@ -21,12 +19,7 @@ export async function getVideos() {
 }   
 
 
-export function getFormattedViews(videoId) {
-    const video = videos.find(video => video.id === videoId);
-    
-    if (!video) {
-        return "Invalid video ID";
-    }
+export function getFormattedViews(video) {
     
     let views = video.secondsFromPost;
 
@@ -44,12 +37,8 @@ export function getFormattedViews(videoId) {
 }
 
 
-export function getFormattedTime(videoId) {
-    const video = videos.find(video => video.id === videoId);
-    
-    if (!video) {
-        return "Invalid video ID";
-    }
+export function getFormattedTime(video) {
+
     
     let seconds = video.secondsFromPost;
 
@@ -72,3 +61,6 @@ export function getFormattedTime(videoId) {
     }
 }
 
+function updateVideoInfo(video){
+    
+}

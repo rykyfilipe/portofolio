@@ -1,17 +1,14 @@
-import { accounts, getAccount } from '../../data/account.js';
+import { getAccount } from '../../data/account.js';
 import { getFormattedTime ,getFormattedViews } from '../../data/videos.js';
 
-export function renderVideosGrid(videos){
-    
+export async function renderVideosGrid(videos) {
     let htmlGrid = '';
 
-    videos.forEach(video => {
-        const account = getAccount(video.accountId);
+    for (const video of videos) {
+        try {
+            const account = await getAccount(video.accountId);
 
-        if (!account) {
-            console.warn(`No account found for accountId: ${video.accountId}`);
-            return; 
-        }
+            if (!account) throw new Error();
 
         const html = `
             <div class="grid-element">
@@ -27,9 +24,9 @@ export function renderVideosGrid(videos){
                         <div class="account-detailes">
                             <p class="name">${account.name}</p>
                             <p class="views">
-                                ${getFormattedViews(video.id)}
+                                ${getFormattedViews(video)}
                                 ~
-                                ${getFormattedTime(video.id)}
+                                ${getFormattedTime(video)}
                             </p>
                         </div>
                     </div>
@@ -38,7 +35,9 @@ export function renderVideosGrid(videos){
         `;
 
         htmlGrid += html;
-    });
-
+    } catch (error) {
+        console.log(error);
+    }
+    }
     document.querySelector('.grid').innerHTML = htmlGrid;
 }
