@@ -1,9 +1,10 @@
-import { videos, getVideos } from '../../data/videos.js';
+import { getVideos } from '../../data/videos.js';
 import { renderVideosGrid } from '../home/render.js';
+
 
 async function main() {
     try{
-        await getVideos();
+        const videos = await getVideos();
         renderVideosGrid(videos);
     }
     catch(error){

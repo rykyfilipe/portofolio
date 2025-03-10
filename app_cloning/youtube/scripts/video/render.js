@@ -1,39 +1,10 @@
 import {getAccount, getFormattedSubscribers} from '../../data/account.js';
-import {getFormattedTime, getFormattedViews} from '../../data/videos.js';
+import {getFormattedTime, getFormattedViews,getFormattedLikes,getFilteredVideos, getFormattedDislikes} from '../../data/videos.js';
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    const videoData = localStorage.getItem('videoData');
-
-    if (!videoData) {
-        console.error('Nu există date video în localStorage.');
-        return;
-    }
-
-    try {
-        const video = JSON.parse(videoData);
-
-        renderFilteredVideos(video);
-        renderVideoInfo(video);
-       
-    } catch (error) {
-        console.error('Eroare la parsarea datelor video:', error);
-    }
-
-});
-
-async function renderVideoInfo(video) {
+export async function renderVideoInfo(video, account) {
     const videoContainer = document.querySelector('.video-container');
-    let account;
-
-    try{
-        account = await getAccount(video.accountId);
-
-        if(!account)
-            throw new Error();
-    }catch(error){
-        console.log(error);
-    }
+    
 
     videoContainer.innerHTML = `
         <div class="video-wrapper">
@@ -57,36 +28,31 @@ async function renderVideoInfo(video) {
                 
                 <div class="ui-buttons">
                     <div class="likes">
-                        <button class="like-button">Like</button>
-                        <button class="unlike-button">Unlike</button>
+                        <button class="like-button">
+                            <img src="../assets/icons/like-button.svg" alt="">
+                            <p class="likes-nr">${getFormattedLikes(video)}</p>
+                        </button>
+                        <button class="dislike-button">
+                            <p class="dislikes-nr">${getFormattedDislikes(video)}</p>
+                            <img class="inverted" src="../assets/icons/dislike-button.svg" alt="">
+                        </button>
                     </div>
-                    <button class="share-button">Share</button>
+                    <button class="share-button">
+                        <img class="inverted" src="../assets/icons/share-button.svg" alt="">    
+                        Share
+                    </button>
                 </div>
             </div>
         </div>
     `;
 }
 
-async function renderFilteredVideos(video) {
+export async function renderFilteredVideos(video) {
     const grid = document.querySelector('.grid-videos');
     let html = '';
-    let data;
+    const videos = await getFilteredVideos(video);
 
-    try {
-        const response = await fetch(`http://localhost:3000/filterVideos/${video.id}`);
-        if (!response.ok) {
-            if (response.status === 404) {
-                console.error('Video not found');
-            } else {
-                console.error('Error fetching data:', response.statusText);
-            }
-        }
-        data = await response.json();
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-
-    for (const videoItem of data) {
+    for (const videoItem of videos) {
         try {
             
             const account = await getAccount(videoItem.accountId);
@@ -116,4 +82,3 @@ async function renderFilteredVideos(video) {
     
     grid.innerHTML = html;
 }
-

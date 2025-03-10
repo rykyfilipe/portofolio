@@ -14,7 +14,9 @@ const videos = [
         "accountId": 12,
         "views": 12500000,
         "secondsFromPost": 43000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 75234,
+        "dislikes": 0
     },
     {
         "id": 2,
@@ -23,7 +25,9 @@ const videos = [
         "accountId": 8,
         "views": 9200000,
         "secondsFromPost": 54000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 58219,
+        "dislikes": 842
     },
     {
         "id": 3,
@@ -32,7 +36,9 @@ const videos = [
         "accountId": 19,
         "views": 17000000,
         "secondsFromPost": 31000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 89231,
+        "dislikes": 2310
     },
     {
         "id": 4,
@@ -41,7 +47,9 @@ const videos = [
         "accountId": 5,
         "views": 15000000,
         "secondsFromPost": 45000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 67452,
+        "dislikes": 950
     },
     {
         "id": 5,
@@ -50,7 +58,9 @@ const videos = [
         "accountId": 15,
         "views": 35000000,
         "secondsFromPost": 123000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 98412,
+        "dislikes": 3451
     },
     {
         "id": 6,
@@ -59,7 +69,9 @@ const videos = [
         "accountId": 2,
         "views": 22000000,
         "secondsFromPost": 56000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 76932,
+        "dislikes": 1200
     },
     {
         "id": 7,
@@ -68,7 +80,9 @@ const videos = [
         "accountId": 0,
         "views": 20000000,
         "secondsFromPost": 78000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 65841,
+        "dislikes": 932
     },
     {
         "id": 8,
@@ -77,7 +91,9 @@ const videos = [
         "accountId": 17,
         "views": 5000000,
         "secondsFromPost": 60000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 31254,
+        "dislikes": 500
     },
     {
         "id": 9,
@@ -86,7 +102,9 @@ const videos = [
         "accountId": 6,
         "views": 19000000,
         "secondsFromPost": 32000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 84256,
+        "dislikes": 1204
     },
     {
         "id": 10,
@@ -95,7 +113,9 @@ const videos = [
         "accountId": 13,
         "views": 15000000,
         "secondsFromPost": 48000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 72351,
+        "dislikes": 845
     },
     {
         "id": 11,
@@ -104,7 +124,9 @@ const videos = [
         "accountId": 10,
         "views": 22000000,
         "secondsFromPost": 34000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 79468,
+        "dislikes": 1560
     },
     {
         "id": 12,
@@ -113,7 +135,9 @@ const videos = [
         "accountId": 3,
         "views": 12000000,
         "secondsFromPost": 60000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 61245,
+        "dislikes": 740
     },
     {
         "id": 13,
@@ -122,7 +146,9 @@ const videos = [
         "accountId": 7,
         "views": 24000000,
         "secondsFromPost": 82000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 87632,
+        "dislikes": 1893
     },
     {
         "id": 14,
@@ -131,7 +157,9 @@ const videos = [
         "accountId": 18,
         "views": 14000000,
         "secondsFromPost": 71000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 55461,
+        "dislikes": 620
     },
     {
         "id": 15,
@@ -140,43 +168,9 @@ const videos = [
         "accountId": 14,
         "views": 28000000,
         "secondsFromPost": 92000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
-    {
-        "id": 16,
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Machu_Picchu_Aerial_View.jpg/1200px-Machu_Picchu_Aerial_View.jpg",
-        "title": "Hidden Wonders",
-        "accountId": 9,
-        "views": 16000000,
-        "secondsFromPost": 78000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
-    {
-        "id": 17,
-        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Kangchenjunga_View.jpg",
-        "title": "Kangchenjunga",
-        "accountId": 4,
-        "views": 13000000,
-        "secondsFromPost": 45000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
-    {
-        "id": 18,
-        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Great_Wall_of_China.jpg",
-        "title": "Great Wall of China",
-        "accountId": 16,
-        "views": 26000000,
-        "secondsFromPost": 87000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
-    },
-    {
-        "id": 19,
-        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Blue_Hole_Belize.jpg",
-        "title": "Scuba Diving in Belize",
-        "accountId": 11,
-        "views": 10000000,
-        "secondsFromPost": 53000,
-        "video": "https://www.w3schools.com/html/mov_bbb.mp4"
+        "video": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "likes": 93257,
+        "dislikes": 2150
     }
 ];
 
@@ -238,6 +232,17 @@ app.post('/search', (req, res) => {
 
     console.log('Căutare:', searchQuery);
     res.send(findFilteredVideos(searchQuery));
+});
+
+app.post('/video-update', (req, res) => {
+    try {
+        const video = req.body.video; 
+        console.log(video);
+        res.json(video); 
+    } catch (error) {
+        console.error("Eroare la procesarea video-ului:", error);
+        res.status(500).send("Eroare server");
+    }
 });
 
 app.get('/video/:id', (req, res) => {

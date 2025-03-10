@@ -166,7 +166,8 @@
 }
 
 .share-button{
-    width: 80px;
+    width: 100px;
+    padding: 5px 10px;
 
     border-radius: 40px;
     border: none;
@@ -174,6 +175,10 @@
     background-color: #222;
     color: white;
     font-size: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .likes{
@@ -185,38 +190,49 @@
 }
 
 .like-button,
-.unlike-button{
-    width: 50%;
+.dislike-button{
+    width: 60%;
+    height: 100%;
 
     background-color: #222;
     color: white;
     border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .like-button{
     border-radius: 40px 0 0 40px;
 }
+.like-button img,
+.dislike-button img,
+.share-button img{
+    width: 50%;
+    height: 50%;
 
-.unlike-button{
-    border-radius: 0 40px 40px 0;
+    filter: invert(100%);
+    margin-bottom: 4px;
+
 }
 
-.like-button::after{
-    content: "";
-    position: absolute;
+.dislike-button img{
+    margin-top: 4px;
+}
 
-    height: 20px;
-    width: 1px;
-    background-color: #989898;
+.dislike-button{
+    border-radius: 0 40px 40px 0;
+    border-left:0.5px solid rgb(145, 145, 145);
+}
 
-    margin-left: 25px;
-
-    align-self: center;
+.clicked{
+    filter: invert(100%);
 }
 
 .share-button:hover,
-.like-button:hover,
-.unlike-button:hover{
+.dislike-button:hover,
+.like-button:hover{
     background-color: #303030;
     cursor: pointer;
 }

@@ -1,4 +1,6 @@
-export const videos = [];
+import { renderVideoInfo, renderFilteredVideos} from "../scripts/video/render.js";
+import { getLocalVideoData,likeEvent } from "../scripts/video/eventLisener.js";
+import { getAccount } from '../data/account.js';
 
 export async function getVideos() {
     try {    
@@ -9,15 +11,31 @@ export async function getVideos() {
         }
 
         const data = await response.json();
-        
-        videos.length = 0; 
-        videos.push(...data); 
+        return data; 
         
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }   
 
+export async function getFilteredVideos(video) {
+    try {
+        const response = await fetch(`http://localhost:3000/filterVideos/${video.id}`);
+        if (!response.ok) {
+            if (response.status === 404) {
+                console.error('Video not found');
+            } else {
+                console.error('Error fetching data:', response.statusText);
+            }
+        }
+        const data = await response.json();
+        
+        return data;
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+}
 
 export function getFormattedViews(video) {
     
@@ -38,7 +56,6 @@ export function getFormattedViews(video) {
 
 
 export function getFormattedTime(video) {
-
     
     let seconds = video.secondsFromPost;
 
@@ -61,6 +78,61 @@ export function getFormattedTime(video) {
     }
 }
 
-function updateVideoInfo(video){
-    
+export function getFormattedLikes(video){
+    const likes = video.likes;
+
+    if (likes >= 1_000_000_000) {
+        return `${(likes / 1_000_000_000).toFixed(1)}B `;
+    } else if (likes >= 1_000_000) {
+        return `${(likes / 1_000_000).toFixed(1)}M `;
+    } else if (likes >= 1_000) {
+        return `${Math.floor(likes / 1_000)}K `;
+    } else if (likes >= 1){
+        return `${likes} `; 
+    }
+    else
+        return `1`; 
+}   
+
+export function getFormattedDislikes(video){
+    const likes = video.dislikes;
+
+    if (likes >= 1_000_000_000) {
+        return `${(likes / 1_000_000_000).toFixed(1)}B `;
+    } else if (likes >= 1_000_000) {
+        return `${(likes / 1_000_000).toFixed(1)}M `;
+    } else if (likes >= 1_000) {
+        return `${Math.floor(likes / 1_000)}K `;
+    } else
+        return `${likes} `; 
+}  
+
+export async function updateVideoInfo(video) {
+    let updatedVideo;
+
+    try {
+        fetch(`http://localhost:3000/video-update`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ video }), 
+        })
+        .then(response => response.json()) 
+        .then(data => updatedVideo = data)
+        .catch(error => console.error('Eroare la request:', error));
+    } catch (error) {
+        console.error('Eroare generală:', error);
+    }
+
+    try {
+        console.log(updatedVideo);
+        const account = await getAccount(updatedVideo.accountId);
+        console.log(updatedVideo);
+        await renderVideoInfo(updatedVideo,account);
+        
+    } catch (error) {
+        console.log(error);
+    }
+
 }
