@@ -1,4 +1,4 @@
-import { updateVideoInfo } from "../../data/videos.js"; 
+import { renderUpdatedLikes } from "./render.js";
 
 export  function likeEvent(videoDta) {
     const video = videoDta;
@@ -14,14 +14,15 @@ export  function likeEvent(videoDta) {
             likeActive = true;
             disLikeButton.disabled = true;
             video.likes++;
-            updateVideoInfo(video);
+            renderUpdatedLikes(video);
 
         } else if (likeActive) {
             likeButton.classList.remove("clicked");
             likeActive = false;
             disLikeButton.disabled = false;
             video.likes--;
-            updateVideoInfo(video);
+            renderUpdatedLikes(video);
+            
         }
     });
 
@@ -31,15 +32,15 @@ export  function likeEvent(videoDta) {
             dislikeActive = true;
             likeButton.disabled = true; 
             video.dislikes++;
-            updateVideoInfo(video); 
+            renderUpdatedLikes(video);
+
 
         } else if (dislikeActive) {
             disLikeButton.classList.remove("clicked");
             dislikeActive = false;
             likeButton.disabled = false;
             video.dislikes--;
-            updateVideoInfo(video);
-            
+            renderUpdatedLikes(video);
         }
     });
 }

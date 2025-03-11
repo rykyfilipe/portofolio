@@ -1,5 +1,5 @@
 import {getAccount, getFormattedSubscribers} from '../../data/account.js';
-import {getFormattedTime, getFormattedViews,getFormattedLikes,getFilteredVideos, getFormattedDislikes} from '../../data/videos.js';
+import {getFormattedTime, getFormattedViews,getFormattedLikes,getFilteredVideos, getFormattedDislikes,updateVideoInfo} from '../../data/videos.js';
 
 
 export async function renderVideoInfo(video, account) {
@@ -81,4 +81,16 @@ export async function renderFilteredVideos(video) {
 
     
     grid.innerHTML = html;
+}
+
+export async function renderUpdatedLikes(video){
+    try {
+        const updatedVideo = await updateVideoInfo(video);
+        console.log(updatedVideo);
+        const account = await getAccount(updatedVideo.accountId);
+        await renderVideoInfo(updatedVideo,account);
+
+    } catch (error) {
+        console.log(error);
+    }
 }

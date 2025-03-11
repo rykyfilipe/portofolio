@@ -108,31 +108,18 @@ export function getFormattedDislikes(video){
 }  
 
 export async function updateVideoInfo(video) {
-    let updatedVideo;
-
     try {
-        fetch(`http://localhost:3000/video-update`, {
+        const response = await fetch(`http://localhost:3000/video-update`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ video }), 
-        })
-        .then(response => response.json()) 
-        .then(data => updatedVideo = data)
-        .catch(error => console.error('Eroare la request:', error));
+        });
+        return await response.json(); // Return the processed data
     } catch (error) {
         console.error('Eroare generală:', error);
+        throw error; // Ensure errors are propagated
     }
-
-    try {
-        console.log(updatedVideo);
-        const account = await getAccount(updatedVideo.accountId);
-        console.log(updatedVideo);
-        await renderVideoInfo(updatedVideo,account);
-        
-    } catch (error) {
-        console.log(error);
-    }
-
 }
+
