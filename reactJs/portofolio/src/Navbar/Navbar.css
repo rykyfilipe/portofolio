@@ -1,0 +1,140 @@
+.headbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: black;
+    top: 0;
+    position: fixed;
+    box-shadow: 5px 5px 5px black, -10px 0 5px rgba(176, 162, 162, 0.626);
+    border-bottom-left-radius: 15px;
+}
+
+.headbar ul {
+    display: flex;
+    align-items: center;
+}
+
+.headbar li:first-child {
+    position: absolute;
+    left: 0;
+}
+
+.headbar li {
+    list-style: none;
+    height: 50px;
+    padding: 0 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.headbar li:hover {
+    background-color: white;
+}
+
+.headbar li:hover a {
+    color: black;
+}
+
+.headbar a {
+    text-decoration: none;
+    color: white;
+}
+
+.headbar button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.headbar button:hover {
+    background-color: rgb(83, 83, 83);
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: -10px 0 5px rgba(176, 162, 162, 0.626);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar ul {
+    width: 100%;
+}
+
+.sidebar li {
+    list-style: none;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.sidebar li:hover {
+    background-color: rgba(133, 133, 133, 0.777);
+}
+
+.sidebar a {
+    color: black;
+    text-decoration: none;
+}
+
+.sidebar button {
+    margin: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.sidebar button:hover {
+    background-color: rgb(147, 147, 147);
+}
+
+@media (min-width: 800px) {
+    .headbar button {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .headbar {
+        height: 50px;
+    }
+
+    .headbar ul {
+        display: flex;
+    }
+
+    .headbar li:not(.exclude) {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .sidebar {
+        width: 100%;
+    }
+}
