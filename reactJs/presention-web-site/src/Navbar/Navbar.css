@@ -1,0 +1,50 @@
+.navbar{
+    width: 100vw;
+    height: 80px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20px;
+}
+
+.home-link{
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    color: rgba(255, 255, 255, 0.773);
+}
+
+.account-link{
+    display: flex;
+    align-items: center;
+}
+
+.navbar ul{
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 50%;
+}
+
+.navbar ul li{
+    list-style: none;
+    
+}
+
+.nav-link,
+.account-link{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.551);
+}
+
+.nav-link:hover{
+    cursor: pointer;
+    border-bottom: 0.5px solid white;
+}

@@ -1,0 +1,97 @@
+.home-container{
+    width: 100vw;
+    height: 100vh;
+
+    background: url("../assets/benjamin-voros-phIFdC6lA4E-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+
+    overflow: hidden;
+}
+
+main{
+
+    height: calc(100vh - 80px);
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 150px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    
+}
+
+.contact p{
+    transform: rotateZ(90deg);
+
+    width: 100px;
+
+    margin-bottom: 25px;
+}
+
+.contact{
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+
+    height: 150px;
+    width: 50px;
+
+
+}
+
+
+
+.main-content{
+    color: rgba(255, 253, 248, 0.642);
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.main-content h2{
+    color: rgb(255, 222, 56);
+}
+
+.main-content button{
+    width: 130px;
+    height: 30px;
+    
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    margin-top: 10px;
+}
+
+
+.main-content button:hover{
+
+    filter: invert(100%);
+}
+
+.main-content span{
+    color: white;
+    font-size: 30px;
+}
+
+img{
+    width: 20px;
+    height: 20px;
+
+    padding-top: 5px;
+    
+    filter: invert();
+}
+
