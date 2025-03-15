@@ -2,88 +2,79 @@
     width: 100vw;
     height: 100vh;
 
-    background: url("../assets/benjamin-voros-phIFdC6lA4E-unsplash.jpg");
+    background: url("../../public/clearoff.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
 
     overflow: hidden;
+    
+    
 }
 
-main{
-
-    height: calc(100vh - 80px);
-    width: 100%;
+main {
+    background-image: url('your-background-image.jpg');
+    
+    color: #F5E8C7;
+    font-family: 'Playfair Display', serif;
+    padding: 50px;
 
     display: flex;
+   
+    margin-top: 80px;
+
     justify-content: space-between;
 
-    margin-top: 150px;
-    margin-left: 20px;
-    margin-right: 20px;
-
-    
+    width: 100%;
+    height: 100%;
 }
-
-.contact p{
-    transform: rotateZ(90deg);
-
-    width: 100px;
-
-    margin-bottom: 25px;
-}
-
-.contact{
-    color: white;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: end;
-
-    height: 150px;
-    width: 50px;
-
-
-}
-
-
 
 .main-content{
-    color: rgba(255, 253, 248, 0.642);
+    width: fit-content;
+
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 
-    align-items: center;
 }
 
-.main-content h2{
-    color: rgb(255, 222, 56);
-}
+.main-content h1 {
 
-.main-content button{
-    width: 130px;
-    height: 30px;
-    
-    border: none;
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    margin-top: 10px;
-}
-
-
-.main-content button:hover{
-
-    filter: invert(100%);
-}
-
-.main-content span{
     color: white;
-    font-size: 30px;
+
+    font-size: clamp(16px, 5vw, 50px);
+    font-weight: 400;
+}
+
+.highlight {
+    font-weight: 700;
+}
+
+.small-text {
+    color: #f6d071;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(10px, 2vw, 20px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+}
+
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #F5E8C7;
+    color: #5B4636;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    align-self: center;
+}
+
+.button:hover{
+    filter: invert(100%);
 }
 
 img{
@@ -95,3 +86,42 @@ img{
     filter: invert();
 }
 
+.contact p{
+    transform: rotateZ(90deg);
+    margin-top: 10px;
+}
+
+
+.wraper{
+    display: flex;
+    flex-direction: column;
+}
+.wraper *{
+    padding-top:5px ;
+}
+
+.contact{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    height: 200px;
+
+}
+
+@media (max-width: 768px) {
+    .contact{
+        transform: rotateZ(-90deg);
+    }
+
+    main{
+        margin-top: -80px;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: space-between;
+
+
+    }
+}

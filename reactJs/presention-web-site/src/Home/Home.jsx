@@ -12,17 +12,20 @@ function Home(){
             <main>
                 <div className="contact">
                     <p>Follow us</p>
-                    <a href=''>
-                        <img src={insta} alt="" />
-                    </a>
-                    <a href=''>
-                        <img src={twitter} alt="" />
-                    </a>
+                    <div className='wraper'>
+                        <a href=''>
+                            <img src={insta} alt="" />
+                        </a>
+                        <a href=''>
+                            <img src={twitter} alt="" />
+                        </a>
+                    </div>
                 </div>
                 <div className="main-content">
-                    <h2>JOIN US ON THE BIG CANADA ROAD TRIP</h2>
-                    <h1>It`s Great Time to Start <span>Living</span> Now</h1>
-                    <button>Know More</button>
+                    <p class="small-text">JOIN US ON THE BIG CANADA ROAD TRIP</p>
+                    <h1>It's Great Time</h1>
+                    <h1> to Start <span class="highlight">Living Now</span></h1>
+                    <a href="#" class="button">Know More</a>
                 </div>
 
                 <Scrollbar />

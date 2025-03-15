@@ -4,6 +4,7 @@
     height: 200px;
 
     margin-right: 50px;
+
 }
 
 .content{
@@ -51,8 +52,39 @@
 
     border-radius: 10px;
 
-    top:237px;
-    right:8px;
+    right:78.5px;
 
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease;
+}
+
+@media (max-width:768px) {
+
+    .scroll-container{
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .content{
+        width: 200px;
+        height:fit-content;
+
+        flex-direction: row;
+        align-items: start;
+        justify-content: space-around;
+
+       
+    }
+
+    .content::after{
+        height: 0.5px;
+        width: 200px;
+        
+        margin-left: -15px;
+    }
+
+    .bar{
+        height: 4px;
+        width: 30px;
+    }
+
 }

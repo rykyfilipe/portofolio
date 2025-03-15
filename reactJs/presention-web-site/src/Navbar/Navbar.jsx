@@ -1,10 +1,15 @@
 import './Navbar.css'
 
+function toggleMenu() {
+    document.getElementById('nav-menu').classList.toggle('active');
+}
+
 function Navbar(){
 
     return(
         <nav className="navbar">
             <h1 className='home-link'><a>CAMPER</a></h1>
+            <div className="menu-toggle" onclick="toggleMenu()">☰</div>
             <ul>
                 <li><a className='nav-link' href="#">Travel Map</a></li>
                 <li><a className='nav-link'  href="#">About us</a></li>
