@@ -1,13 +1,15 @@
-import Home from './Home/Home'
+/** @format */
 
+import Home from "./Home/Home";
+import Content from "./Content/Content";
 
 function App() {
-
-  return (
-    <>
-      <Home />
-    </>
-  )
+	return (
+		<>
+			<Home />
+			<Content />
+		</>
+	);
 }
 
-export default App
+export default App;

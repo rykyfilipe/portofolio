@@ -1,90 +1,91 @@
-.scroll-container{
+/** @format */
 
-    width: 50px;
-    height: 200px;
+.scroll-container {
+	width: 50px;
+	height: 200px;
 
-    margin-right: 50px;
-
+	margin-right: 50px;
 }
 
-.content{
-    width: 100%;
-    height: 100%;
+.content {
+	width: 100%;
+	height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: end;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
 }
 
-.content::after{
-    content: "";
-    position: absolute;
-
-    width: 0.5px;
-    height: 150px;
-
-    background-color: white;
-
-    margin-right: -20px;
+.bar.moving {
+	display: none;
 }
 
-.scroll-container .content a{
-    padding-top: 15px;
+.content::after {
+	content: "";
+	position: absolute;
 
-    text-decoration: none;
-    color: white;
+	width: 0.5px;
+	height: 150px;
 
-    position: relative;
+	background-color: white;
 
+	margin-right: -20px;
 }
 
-.scroll-container .content a:hover{
-    color: rgba(255, 255, 255, 0.707);
+.scroll-container .content a {
+	padding-top: 15px;
+
+	text-decoration: none;
+	color: white;
+
+	position: relative;
 }
 
-.bar{
-    width: 4px;
-    height: 30px;
-
-    position: absolute;
-
-    background-color: white;
-
-    border-radius: 10px;
-
-    right:78.5px;
-
-    transition: all 0.5s ease;
+.scroll-container .content a:hover {
+	color: rgba(255, 255, 255, 0.707);
 }
 
-@media (max-width:768px) {
+.bar {
+	width: 4px;
+	height: 30px;
 
-    .scroll-container{
-        height: fit-content;
-        width: fit-content;
-    }
+	position: absolute;
 
-    .content{
-        width: 200px;
-        height:fit-content;
+	background-color: white;
 
-        flex-direction: row;
-        align-items: start;
-        justify-content: space-around;
+	border-radius: 10px;
 
-       
-    }
+	right: 78.5px;
 
-    .content::after{
-        height: 0.5px;
-        width: 200px;
-        
-        margin-left: -15px;
-    }
+	transition: all 0.5s ease;
+}
 
-    .bar{
-        height: 4px;
-        width: 30px;
-    }
+@media (max-width: 768px) {
+	.scroll-container {
+		height: fit-content;
+		width: fit-content;
 
+		margin: 0;
+	}
+
+	.content {
+		width: 200px;
+		height: fit-content;
+
+		flex-direction: row;
+		align-items: start;
+		justify-content: space-around;
+	}
+
+	.content::after {
+		height: 0.5px;
+		width: 200px;
+
+		margin-left: -15px;
+	}
+
+	.bar {
+		height: 4px;
+		width: 30px;
+	}
 }
