@@ -1,0 +1,105 @@
+/** @format */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: serif;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	background: linear-gradient(#e66465, #9198e5);
+	padding: 20px;
+}
+
+/* Formular responsive */
+.new-item-form {
+	margin-top: 50px;
+	width: clamp(250px, 80%, 900px); /* Se ajustează între 250px și 900px */
+	min-height: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+/* Input responsive */
+.form-row input {
+	border: none;
+	border-radius: 20px;
+	width: clamp(200px, 50vw, 400px); /* Se ajustează între 200px și 400px */
+	padding: 10px;
+	font-size: medium;
+	background: rgba(255, 255, 255, 0.175);
+	backdrop-filter: blur(10px);
+}
+
+.btn {
+	border: none;
+	border-radius: 20px;
+	padding: 10px clamp(20px, 5vw, 40px); /* Se ajustează automat */
+	font-size: 18px;
+	background-color: rgba(37, 37, 37, 0.671);
+	color: white;
+	cursor: pointer;
+}
+
+.header {
+	margin-top: 20px;
+	font-family: "Montserrat";
+	font-weight: 800;
+	line-height: 1em;
+	font-size: clamp(24px, 5vw, 40px);
+	color: #fff;
+}
+
+.list {
+	margin-top: 20px;
+	width: 100%;
+	list-style: none;
+	max-width: 900px;
+}
+
+.list li {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	margin-bottom: 8px;
+	background-color: #f9f9f9;
+}
+
+.list span {
+	margin-left: 5px;
+}
+
+.check {
+	cursor: pointer;
+}
+
+.btn-delete {
+	background-color: #ff4d4f;
+	color: white;
+	border: none;
+	padding: 6px clamp(10px, 3vw, 20px); /* Se ajustează între 10px și 20px */
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.btn-delete:hover {
+	background-color: #d9363e;
+}
+li label {
+	display: flex;
+	align-items: center;
+}
+.completed {
+	text-decoration-line: line-through;
+}
