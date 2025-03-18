@@ -1,9 +1,9 @@
 /** @format */
 import "./Content.css";
 
-function Content() {
+function Content({ classId }) {
 	return (
-		<div className='content-section' id='content'>
+		<div className='content-section' id={classId}>
 			<h1>Section</h1>
 		</div>
 	);

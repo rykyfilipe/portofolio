@@ -8,8 +8,6 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
-
-	overflow: hidden;
 }
 
 main {
@@ -23,10 +21,7 @@ main {
 
 	margin-top: 80px;
 
-	justify-content: space-between;
-
-	width: 100%;
-	height: 100%;
+	justify-content: center;
 }
 
 .main-content {
@@ -103,17 +98,33 @@ img {
 	justify-content: space-around;
 
 	height: 200px;
+
+	position: absolute;
+	left: 50px;
 }
 
 @media (max-width: 768px) {
 	.contact {
 		transform: rotateZ(-90deg);
+		position: relative;
+		left: 0;
 	}
 
 	main {
-		margin-top: -80px;
 		flex-direction: column-reverse;
 		align-items: center;
 		justify-content: space-between;
+
+		height: calc(100vh - 80x);
+	}
+}
+
+@media (max-width: 400px) {
+	main {
+		justify-content: center;
+	}
+
+	.button {
+		transform: scale(70%);
 	}
 }

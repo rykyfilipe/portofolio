@@ -11,7 +11,7 @@ function useWindowSize() {
 			setWidth(window.innerWidth);
 			const bar = document.querySelector(".bar");
 
-			bar.classList.add("moving");
+			if (bar) bar.classList.add("moving");
 		};
 
 		window.addEventListener("resize", handleResize);
@@ -28,9 +28,9 @@ function Scrollbar() {
 
 	useEffect(() => {
 		if (pageWidth < 768) {
-			setPosition([48.5, 262]);
+			setPosition([-2, pageWidth / 2 - 210]);
 		} else {
-			setPosition([210, pageWidth - 82]);
+			setPosition([210, pageWidth]);
 		}
 	}, [pageWidth]);
 
@@ -42,32 +42,38 @@ function Scrollbar() {
 			const newLeft = linkElement.offsetLeft;
 			const bar = document.querySelector(".bar");
 
-			bar.classList.remove("moving");
-
-			if (newTop > 100) {
-				setPosition([newTop + 10, pageWidth - 82]);
-			} else {
-				setPosition([48.5, newLeft]);
+			if (bar) {
+				bar.classList.remove("moving");
 			}
 
-			console.log(`Top: ${newTop}, Center Left: ${newLeft}`);
+			if (pageWidth < 768) {
+				requestAnimationFrame(() => {
+					setPosition([-2, newLeft]);
+				});
+			} else {
+				requestAnimationFrame(() => {
+					setPosition([newTop + 10, newLeft + linkElement.offsetWidth + 17.5]);
+				});
+			}
+
+			console.log(`Top: ${newTop}, Left: ${newLeft}`);
 		}
 	};
 
-	const scrolIds = ["#start", "#content"];
+	const scrolIds = ["#start", "#content1", "#content2"];
 
 	return (
 		<div className='scroll-container'>
 			<div className='content'>
 				<div
 					className='bar'
-					style={{ top: position[0] + "px", left: position[1] + "px" }}></div>
+					style={{ top: `${position[0]}px`, left: `${position[1]}px` }}></div>
 
 				{["Start", "01", "02", "03"].map((text, index) => (
 					<a
 						key={index}
 						className='link'
-						href={scrolIds[index]}
+						href={scrolIds[index] || "#"}
 						ref={(el) => (linksRef.current[index] = el)}
 						onClick={() => handleClick(index)}>
 						{text}
