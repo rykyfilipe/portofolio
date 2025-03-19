@@ -1,97 +1,165 @@
-/** @format */
+/**
+ * Stilizare generală
+ *
+ * @format
+ */
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: sans-serif;
+	font-family: "Poppins", sans-serif;
 }
 
 body {
-	width: 100vw;
-	height: 100vh;
-
-	background: rgb(0, 0, 0);
-	background: linear-gradient(
-		90deg,
-		rgba(0, 0, 0, 1) 8%,
-		rgba(90, 90, 98, 1) 29%,
-		rgba(121, 115, 120, 1) 51%,
-		rgba(70, 64, 64, 1) 68%,
-		rgba(0, 0, 0, 1) 94%
-	);
+	background: linear-gradient(135deg, #fbc531, #e1b12c);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 20px;
 }
 
 #game {
-	width: 100%;
-	height: 100%;
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	width: 90%;
+	max-width: 800px;
+	background: white;
+	border-radius: 20px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+	text-align: center;
+	overflow: hidden;
+	animation: fadeIn 1s ease-in-out;
 }
 
-.money-shop-container {
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.money-container {
+	background: #44bd32;
 	color: white;
+	padding: 10px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+	animation: pulse 2s infinite;
+}
 
-	height: 100vh;
-	width: 33%;
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
 
-	text-align: center;
+.shop-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
 
-	border-right: 1px solid rgb(173, 172, 172);
+.skin-button {
+	background: white;
+	border: 2px solid #e1b12c;
+	border-radius: 10px;
+	padding: 10px;
+	transition: 0.3s;
+	cursor: pointer;
+	overflow: hidden;
+	position: relative;
+}
+
+.skin-button img {
+	width: 50px;
+	height: 50px;
+	transition: transform 0.3s;
+}
+
+.skin-button:hover img {
+	transform: rotate(20deg) scale(1.1);
+}
+
+.skin-price {
+	font-weight: bold;
+	color: #e84118;
+	margin-top: 5px;
+	transition: color 0.3s;
+}
+
+.skin-button:hover .skin-price {
+	color: #44bd32;
+}
+
+.insuficent-money {
+	background-color: #96979597;
 }
 
 .bannana-container {
-	text-align: center;
-}
-
-.my-skins {
-	width: 33%;
-	height: 100%;
-
-	text-align: center;
-	border-left: 1px solid rgb(173, 172, 172);
-}
-
-.my-skins h2 {
-	padding: 20px;
-	color: white;
+	margin: 20px 0;
 }
 
 .btn {
-	width: 100px;
-	height: 100px;
-
-	background-color: transparent;
-
+	background: none;
 	border: none;
-
 	cursor: pointer;
+	animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+	100% {
+		transform: translateY(0);
+	}
 }
 
 .bannana-image {
-	width: 100%;
-	height: auto;
-
-	transition: all 0.1s ease-in;
+	width: 100px;
+	transition: transform 0.2s;
 }
 
-.counter {
-	padding-top: 50px;
-
-	color: white;
-	font-size: 30px;
+.btn:active .bannana-image {
+	transform: scale(0.9);
 }
 
-.zoom {
-	transform: scale(1.2);
+.my-skins {
+	margin-top: 20px;
 }
 
-.money {
-	padding: 20px;
+.skins-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
 }
 
-.strike {
-	color: rgba(169, 169, 169, 0.647);
+@media (max-width: 600px) {
+	.shop-container,
+	.skins-container {
+		flex-direction: column;
+		align-items: center;
+	}
+	.skin-button {
+		width: 80%;
+	}
 }
