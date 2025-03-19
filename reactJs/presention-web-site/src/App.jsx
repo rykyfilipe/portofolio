@@ -7,8 +7,8 @@ function App() {
 	return (
 		<>
 			<Home />
-			<Content class='content1' key='content1' />
-			<Content class='content2' key='content2' />
+			<Content classId='content1' key='content1' />
+			<Content classId='content2' key='content2' />
 		</>
 	);
 }
