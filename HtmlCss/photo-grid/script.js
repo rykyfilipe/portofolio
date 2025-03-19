@@ -2,21 +2,16 @@
 
 const grid = document.querySelector(".photos-grid");
 
-let html = "";
-
 for (let i = 0; i < 50; i++) {
-	html += `
-        <img
-            class="element-image"
-            src="https://picsum.photos/400/250?random=${Math.floor(
-							Math.random() * 1000,
-						)}" 
-            alt=""
-        >
-    `;
-}
+	const img = document.createElement("img");
+	img.classList.add("element-image");
+	img.src = `https://picsum.photos/400/250?random=${Math.floor(
+		Math.random() * 1000,
+	)}`;
+	img.alt = "";
 
-grid.innerHTML = html;
+	grid.appendChild(img);
+}
 
 document.querySelectorAll(".column-button").forEach((button) => {
 	button.addEventListener("click", () => {
