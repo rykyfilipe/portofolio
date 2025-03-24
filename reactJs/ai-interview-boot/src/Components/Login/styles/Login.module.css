@@ -1,5 +1,5 @@
 /** @format */
-@import url("../../main.module.css");
+@import url("./../../../main.module.css");
 
 body {
 	height: 100vh;
@@ -92,4 +92,5 @@ button:hover {
 
 .help-wrapper a:hover {
 	text-decoration: underline;
+	cursor: pointer;
 }

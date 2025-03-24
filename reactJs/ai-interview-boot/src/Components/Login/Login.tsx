@@ -1,6 +1,7 @@
 /** @format */
 import React, { useState } from "react";
-import styles from "./Login.module.css";
+import styles from "./styles/Login.module.css";
+
 import image from "../../assets/login-image.jpg";
 import { useNavigate } from "react-router-dom";
 
@@ -50,9 +51,19 @@ const Login = () => {
 			</div>
 
 			<div className={styles["help-wrapper"]}>
-				<a href='#'>Forgot password?</a>
+				<a
+					onClick={() => {
+						navigate("/forgot-password");
+					}}>
+					Forgot password?
+				</a>
 				<span>or</span>
-				<a href='#'>Sign Up?</a>
+				<a
+					onClick={() => {
+						navigate("/sign-up");
+					}}>
+					Sign Up?
+				</a>
 			</div>
 		</form>
 	);
