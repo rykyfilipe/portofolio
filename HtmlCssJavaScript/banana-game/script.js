@@ -147,14 +147,13 @@ function createMenus() {
 	menu.classList.add("menu");
 
 	menuOpen.addEventListener("click", () => {
-		menu.classList.add("show");
-		menuOpen.classList.add("open");
+		menu.classList.toggle("show");
+		menuOpen.classList.toggle("open");
 	});
 
 	close.addEventListener("click", () => {
-		menu.classList.remove("show");
-		menu.classList.add("hide");
-		menuOpen.classList.remove("open");
+		menu.classList.toggle("show");
+		menuOpen.classList.toggle("open");
 	});
 
 	body.prepend(menuOpen);
