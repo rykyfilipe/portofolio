@@ -1,9 +1,10 @@
 /**
- * Stilizare generală
- *
+ * Optimized CSS for Banana Game
+ * 
  * @format
  */
 
+/* Base styles with better performance */
 * {
 	margin: 0;
 	padding: 0;
@@ -11,62 +12,90 @@
 	font-family: "Poppins", sans-serif;
 }
 
+/* Using hardware acceleration for animations */
 body {
 	background: linear-gradient(135deg, #fbc531, #e1b12c);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 100vh;
 	padding: 20px;
-
 	overflow-x: hidden;
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+}
+
+/* Menu icon styles */
+.menu-open {
+	display: none;
 }
 
 .menu-close,
 .menu-open {
 	width: 26px;
 	height: 26px;
-
 	position: absolute;
 	top: 20px;
 	right: 20px;
-
 	padding: 2px;
-
 	border-radius: 50%;
+	cursor: pointer;
+	z-index: 100;
+	transition: transform 0.2s, background-color 0.2s;
 }
 
 .menu-close:hover,
 .menu-open:hover {
 	transform: scale(1.1);
-	background-color: #5b5b5b49;
+	background-color: rgba(91, 91, 91, 0.3);
 }
 
+/* Menu styles with optimized transitions */
 .menu {
 	width: 100%;
 	height: 100vh;
-
-	position: absolute;
+	position: fixed;
 	top: 0;
-	right: -100%;
-	background-color: #5b5b5b;
-	transition: transform 0.5s ease-in-out;
-
+	right: 0;
+	transform: translateX(100%);
 	background-color: #e1b12c;
+	transition: transform 0.3s ease-in-out;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 99;
 }
+
 .menu-open.open {
 	visibility: hidden;
 }
 
 .menu.show {
-	transform: translateX(-100%);
+	transform: translateX(0);
 }
 
-.menu.hide {
-	transform: translateX(100%);
+/* Menu buttons */
+.menu-button:first-of-type {
+	margin-top: 50px;
 }
 
+.menu-button {
+	border: none;
+	padding: 20px 50px;
+	background: transparent;
+	border-radius: 20px;
+	color: white;
+	font-size: large;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.menu-button:hover {
+	background-color: rgba(91, 91, 91, 0.3);
+}
+
+/* Game container */
 #game {
 	width: 90%;
 	max-width: 800px;
@@ -76,7 +105,8 @@ body {
 	padding: 20px;
 	text-align: center;
 	overflow: hidden;
-	animation: fadeIn 1s ease-in-out;
+	animation: fadeIn 0.5s ease-in-out;
+	will-change: opacity, transform;
 }
 
 @keyframes fadeIn {
@@ -90,6 +120,7 @@ body {
 	}
 }
 
+/* Money display */
 .money-container {
 	background: #44bd32;
 	color: white;
@@ -98,6 +129,7 @@ body {
 	margin-bottom: 10px;
 	font-size: 1.2em;
 	animation: pulse 2s infinite;
+	will-change: transform;
 }
 
 @keyframes pulse {
@@ -112,6 +144,7 @@ body {
 	}
 }
 
+/* Shop container */
 .shop-container {
 	display: flex;
 	flex-wrap: wrap;
@@ -120,12 +153,13 @@ body {
 	margin-bottom: 20px;
 }
 
+/* Skin buttons */
 .skin-button {
 	background: white;
 	border: 2px solid #e1b12c;
 	border-radius: 10px;
 	padding: 10px;
-	transition: 0.3s;
+	transition: all 0.2s;
 	cursor: pointer;
 	overflow: hidden;
 	position: relative;
@@ -134,7 +168,8 @@ body {
 .skin-button img {
 	width: 50px;
 	height: 50px;
-	transition: transform 0.3s;
+	transition: transform 0.2s;
+	will-change: transform;
 }
 
 .skin-button:hover img {
@@ -145,7 +180,7 @@ body {
 	font-weight: bold;
 	color: #e84118;
 	margin-top: 5px;
-	transition: color 0.3s;
+	transition: color 0.2s;
 }
 
 .skin-button:hover .skin-price {
@@ -153,11 +188,14 @@ body {
 }
 
 .insuficent-money {
-	background-color: #96979597;
+	background-color: rgba(150, 151, 149, 0.6);
+	cursor: not-allowed;
 }
 
+/* Banana container */
 .bannana-container {
 	margin: 20px 0;
+	position: relative;
 }
 
 .btn {
@@ -165,6 +203,7 @@ body {
 	border: none;
 	cursor: pointer;
 	animation: float 2s ease-in-out infinite;
+	will-change: transform;
 }
 
 @keyframes float {
@@ -181,15 +220,85 @@ body {
 
 .bannana-image {
 	width: 100px;
-	transition: transform 0.2s;
+	transition: transform 0.15s;
+	will-change: transform;
 }
 
 .btn:active .bannana-image {
 	transform: scale(0.9);
 }
 
+.bannana-image.zoom {
+	transform: scale(1.1);
+}
+
+/* Game message */
+.game-message {
+	position: absolute;
+	top: -30px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+	0%,
+	100% {
+		opacity: 0;
+	}
+	10%,
+	90% {
+		opacity: 1;
+	}
+}
+
+/* Strike display */
+.strike {
+	color: #e84118;
+	font-size: 1.5em;
+	margin-top: 10px;
+	height: 30px;
+}
+
+/* My skins section */
 .my-skins {
 	margin-top: 20px;
+	text-align: center;
+}
+
+.my-skins-container h2 {
+	position: absolute;
+	top: 50px;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100px;
+	padding-left: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	top: 0;
+}
+
+.wrapper h2 {
+	margin-top: 20px;
+}
+
+.my-skins-container,
+.shop {
+	width: 80%;
+	height: auto;
+	padding-top: 100px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
 }
 
 .skins-container {
@@ -199,10 +308,39 @@ body {
 	gap: 10px;
 }
 
+/* Counter display */
+.counter {
+	font-size: 2em;
+	color: #333;
+	margin-bottom: 10px;
+}
+
+/* Responsive design */
 @media (max-width: 600px) {
 	.shop-container,
 	.skins-container,
 	.my-skins {
 		display: none;
+	}
+
+	.menu-open {
+		display: block;
+	}
+
+	#game {
+		width: 95%;
+		padding: 15px;
+	}
+
+	.bannana-image {
+		width: 80px;
+	}
+
+	.bannana-container.down {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		margin: 50px;
 	}
 }
