@@ -154,12 +154,4 @@ body {
 }
 
 @media (max-width: 600px) {
-	.shop-container,
-	.skins-container {
-		flex-direction: column;
-		align-items: center;
-	}
-	.skin-button {
-		width: 80%;
-	}
 }
