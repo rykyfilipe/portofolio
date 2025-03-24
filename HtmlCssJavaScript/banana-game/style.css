@@ -19,6 +19,52 @@ body {
 	justify-content: center;
 	min-height: 100vh;
 	padding: 20px;
+
+	overflow-x: hidden;
+}
+
+.menu-close,
+.menu-open {
+	width: 26px;
+	height: 26px;
+
+	position: absolute;
+	top: 20px;
+	right: 20px;
+
+	padding: 2px;
+
+	border-radius: 50%;
+}
+
+.menu-close:hover,
+.menu-open:hover {
+	transform: scale(1.1);
+	background-color: #5b5b5b49;
+}
+
+.menu {
+	width: 100%;
+	height: 100vh;
+
+	position: absolute;
+	top: 0;
+	right: -100%;
+	background-color: #5b5b5b;
+	transition: transform 0.5s ease-in-out;
+
+	background-color: #e1b12c;
+}
+.menu-open.open {
+	visibility: hidden;
+}
+
+.menu.show {
+	transform: translateX(-100%);
+}
+
+.menu.hide {
+	transform: translateX(100%);
 }
 
 #game {
@@ -154,4 +200,9 @@ body {
 }
 
 @media (max-width: 600px) {
+	.shop-container,
+	.skins-container,
+	.my-skins {
+		display: none;
+	}
 }

@@ -132,15 +132,49 @@ function loadProgress() {
 	}
 }
 
+function createMenus() {
+	const body = document.querySelector("body");
+
+	const menuOpen = document.createElement("img");
+	menuOpen.src = "./assets/open.svg";
+	menuOpen.classList.add("menu-open");
+
+	const close = document.createElement("img");
+	close.src = "./assets/close.svg";
+	close.classList.add("menu-close");
+
+	const menu = document.createElement("div");
+	menu.classList.add("menu");
+
+	menuOpen.addEventListener("click", () => {
+		menu.classList.add("show");
+		menuOpen.classList.add("open");
+	});
+
+	close.addEventListener("click", () => {
+		menu.classList.remove("show");
+		menu.classList.add("hide");
+		menuOpen.classList.remove("open");
+	});
+
+	body.prepend(menuOpen);
+
+	menu.append(close);
+	body.append(menu);
+}
+
 function createMainContainer() {
 	const gameRoot = document.getElementById("game");
 	if (!gameRoot) return;
+
+	createMenus();
 
 	const container = document.createElement("div");
 	container.classList.add("money-shop-container");
 
 	const moneyContainer = document.createElement("div");
 	moneyContainer.classList.add("money-container");
+
 	const moneyDisplay = document.createElement("h2");
 	moneyDisplay.classList.add("money");
 	moneyDisplay.innerText = `MONEY : ${money}`;
@@ -312,7 +346,6 @@ function addBanana(imageLink) {
 
 		buttons.forEach((button) => {
 			const skinId = Number(button.dataset.id);
-			
 
 			if (skins[skinId] && skins[skinId].price > money) {
 				button.classList.add("insuficent-money");
