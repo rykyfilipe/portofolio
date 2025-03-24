@@ -1,0 +1,11 @@
+/** @format */
+
+:root {
+	--primary: black;
+	--secundary: white;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
