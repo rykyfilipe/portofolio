@@ -9,7 +9,7 @@ body {
 	background-color: rgb(220, 220, 220);
 }
 
-form {
+.form {
 	width: 300px;
 	height: 450px;
 	display: flex;
@@ -52,7 +52,7 @@ form {
 	box-shadow: inset 5px 3px 12px rgb(166, 165, 165);
 }
 
-button {
+.button {
 	margin-top: 10px;
 	padding: 10px;
 
@@ -68,7 +68,7 @@ button {
 	transition: all 0.5s ease-in-out;
 }
 
-button:hover {
+.button:hover {
 	filter: invert(100%);
 	transform: scale(1.2);
 

@@ -19,7 +19,7 @@ const Login = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className={styles["form"]}>
 			<div className={styles["info-wrapper"]}>
 				<img src={image} alt='Login Illustration' />
 				<h3>Interview</h3>
@@ -47,7 +47,9 @@ const Login = () => {
 						placeholder='password'
 					/>
 				</label>
-				<button type='submit'>Login</button>
+				<button type='submit' className={styles["button"]}>
+					Login
+				</button>
 			</div>
 
 			<div className={styles["help-wrapper"]}>
