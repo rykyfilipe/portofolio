@@ -17,13 +17,13 @@ const Home: React.FC = () => {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const chatContainerRef = useRef<HTMLDivElement>(null);
 
-	// Efectul pentru scroll automat
+	// Efect pentru scroll automat
 	useEffect(() => {
 		if (chatContainerRef.current) {
 			chatContainerRef.current.scrollTop =
 				chatContainerRef.current.scrollHeight;
 		}
-	}, [chatMessages]); // Rulează de fiecare dată când se schimbă mesajele
+	}, [chatMessages]);
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -41,7 +41,7 @@ const Home: React.FC = () => {
 				timestamp: new Date().toISOString(),
 			};
 
-			// Add user message first
+			// Adaugă mesajul utilizatorului
 			setChatMessages((prev) => [...prev, userMessage]);
 
 			const response = await fetch("http://localhost:3001/api/message", {
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
 				timestamp: data.timestamp,
 			};
 
-			// Add AI response
+			// Adaugă mesajul AI
 			setChatMessages((prev) => [...prev, aiMessage]);
 		} catch (error) {
 			console.error("Error fetching AI response:", error);
@@ -74,7 +74,7 @@ const Home: React.FC = () => {
 				sender: "ai",
 			};
 
-			// Add error message
+			// Adaugă mesaj de eroare
 			setChatMessages((prev) => [...prev, errorMessage]);
 		} finally {
 			setIsLoading(false);
@@ -86,14 +86,11 @@ const Home: React.FC = () => {
 		<div className={styles["chat-container"]}>
 			<h1>AI Chat Assistant</h1>
 
-			{/* Adaugă ref și stil pentru scroll */}
+			{/* Container mesaje */}
 			<div
 				ref={chatContainerRef}
 				className={styles["history-chat"]}
-				style={{
-					overflowY: "auto",
-					maxHeight: "400px",
-				}}>
+				style={{ overflowY: "auto", maxHeight: "400px" }}>
 				{chatMessages.map((chat, index) => (
 					<div
 						key={index}
@@ -106,8 +103,23 @@ const Home: React.FC = () => {
 						</div>
 					</div>
 				))}
+
+				{/* Indicator de încărcare */}
+				{isLoading && (
+					<div className={styles["ai-chat"]}>
+						<div className={styles["message"]}>
+							<strong>AI:</strong>
+							<div className={styles["is-loading"]}>
+								<div className={styles["loading-dot"]}></div>
+								<div className={styles["loading-dot"]}></div>
+								<div className={styles["loading-dot"]}></div>
+							</div>
+						</div>
+					</div>
+				)}
 			</div>
 
+			{/* Formularul de trimitere */}
 			<form className={styles["chat-form"]} onSubmit={handleSubmit}>
 				<div className={styles["input"]}>
 					<input
