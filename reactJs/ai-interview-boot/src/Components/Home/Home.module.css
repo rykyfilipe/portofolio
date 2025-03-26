@@ -98,11 +98,6 @@ body {
 	display: flex;
 }
 
-.message strong {
-	float: left;
-	height: fit-content;
-}
-
 .ai-chat {
 	align-self: flex-start;
 	margin-left: 10px;

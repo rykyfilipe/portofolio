@@ -1,30 +1,43 @@
 /** @format */
-import React, { useState, useRef, FormEvent, useEffect } from "react";
+
+import React, { useState, useEffect, useRef, FormEvent } from "react";
 import styles from "./Home.module.css";
 import sendIcon from "../../assets/send-icon.svg";
-
-interface ChatMessage {
-	text: string;
-	sender: "user" | "ai";
-	timestamp?: string;
-}
+import { fetchAiResponse, ChatMessage, startChat } from "./utils"; // Importăm funcțiile de utilitate
+import { v4 as uuidv4 } from "uuid"; // Importăm uuid pentru a genera chei unice
 
 const Home: React.FC = () => {
 	const [message, setMessage] = useState<string>("");
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
-
 	const inputRef = useRef<HTMLInputElement>(null);
 	const chatContainerRef = useRef<HTMLDivElement>(null);
 
-	// Efect pentru scroll automat
-	useEffect(() => {
-		if (chatContainerRef.current) {
-			chatContainerRef.current.scrollTop =
-				chatContainerRef.current.scrollHeight;
-		}
-	}, [chatMessages]);
+	let go = true;
 
+	// Efect pentru a trimite mesajul inițial de la AI doar o dată
+	useEffect(() => {
+		const fetchData = async () => {
+			// Asigură-te că mesajul inițial de la AI este trimis doar o dată
+			const data = await startChat();
+			if (go) {
+				setChatMessages((prev) => [
+					...prev,
+					{
+						id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
+						text: data.message,
+						sender: "ai",
+						timestamp: new Date().toISOString(),
+					},
+				]);
+				go = false;
+			}
+		};
+
+		fetchData(); // Se va executa doar când chatMessages este gol
+	}, []); // Depinde de chatMessages, dar se va executa doar când este gol
+
+	// Funcția pentru trimiterea mesajului
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -34,44 +47,35 @@ const Home: React.FC = () => {
 		setMessage("");
 		setIsLoading(true);
 
+		// Mesajul utilizatorului
+		const userMessage: ChatMessage = {
+			id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
+			text: trimmedMessage,
+			sender: "user",
+			timestamp: new Date().toISOString(),
+		};
+
+		setChatMessages((prev) => [...prev, userMessage]);
+
 		try {
-			const userMessage: ChatMessage = {
-				text: trimmedMessage,
-				sender: "user",
+			// Răspunsul de la AI pentru mesajul utilizatorului
+			const data = await fetchAiResponse(trimmedMessage);
+
+			const aiMessage: ChatMessage = {
+				id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
+				text: data.message,
+				sender: "ai",
 				timestamp: new Date().toISOString(),
 			};
 
-			// Adaugă mesajul utilizatorului
-			setChatMessages((prev) => [...prev, userMessage]);
-
-			const response = await fetch("http://localhost:3001/api/message", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ message: trimmedMessage }),
-			});
-
-			if (!response.ok) {
-				throw new Error("Network response was not ok");
-			}
-
-			const data = await response.json();
-
-			const aiMessage: ChatMessage = {
-				text: data.message,
-				sender: "ai",
-				timestamp: data.timestamp,
-			};
-
-			// Adaugă mesajul AI
+			// Adăugăm răspunsul de la AI
 			setChatMessages((prev) => [...prev, aiMessage]);
 		} catch (error) {
-			console.error("Error fetching AI response:", error);
-
 			const errorMessage: ChatMessage = {
+				id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
 				text: "Sorry, something went wrong. Please try again.",
 				sender: "ai",
+				timestamp: new Date().toISOString(),
 			};
 
 			// Adaugă mesaj de eroare
@@ -82,29 +86,32 @@ const Home: React.FC = () => {
 		}
 	};
 
+	// Efect pentru scroll automat
+	useEffect(() => {
+		if (chatContainerRef.current) {
+			chatContainerRef.current.scrollTop =
+				chatContainerRef.current.scrollHeight;
+		}
+	}, [chatMessages]);
+
 	return (
 		<div className={styles["chat-container"]}>
-			<h1>AI Chat Assistant</h1>
+			<h1>AI interviewer</h1>
 
-			{/* Container mesaje */}
 			<div
 				ref={chatContainerRef}
 				className={styles["history-chat"]}
 				style={{ overflowY: "auto", maxHeight: "400px" }}>
-				{chatMessages.map((chat, index) => (
+				{chatMessages.map((chat) => (
 					<div
-						key={index}
+						key={chat.id}
 						className={
 							chat.sender === "user" ? styles["user-chat"] : styles["ai-chat"]
 						}>
-						<div className={styles["message"]}>
-							<strong>{chat.sender === "user" ? "You:" : "AI:"}</strong>{" "}
-							{chat.text}
-						</div>
+						<div className={styles["message"]}>{chat.text}</div>
 					</div>
 				))}
 
-				{/* Indicator de încărcare */}
 				{isLoading && (
 					<div className={styles["ai-chat"]}>
 						<div className={styles["message"]}>
@@ -119,7 +126,6 @@ const Home: React.FC = () => {
 				)}
 			</div>
 
-			{/* Formularul de trimitere */}
 			<form className={styles["chat-form"]} onSubmit={handleSubmit}>
 				<div className={styles["input"]}>
 					<input

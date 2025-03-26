@@ -81,8 +81,24 @@ const askAi = async (userMessage) => {
 };
 
 // Route handlers
-app.get("/api/hello", (req, res) => {
-	res.json({ message: "Server is running successfully!" });
+app.get("/hello", async (req, res) => {
+	try {
+		const aiResponse =
+			await askAi(`Comportă-te ca un angajator sau interviewer, cere utilizatorului un domeniu in care sa 
+			ii iei interview-ul, pune intrebari pe rand exact
+			ca la un interview in domeniul care il alege utilizatorul,
+			asteapta raspunsul, la final spune daca este sau nu angajat,
+	 		foloseste răspunsuri clare și precise.`);
+		res.status(200).json({
+			message: aiResponse,
+			timestamp: new Date().toISOString(),
+		});
+	} catch (error) {
+		res.status(500).json({
+			error: "Eroare la generarea răspunsului AI",
+			details: error instanceof Error ? error.message : "Eroare necunoscută",
+		});
+	}
 });
 
 // Message handling endpoint
