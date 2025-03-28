@@ -99,7 +99,6 @@ export async function forgotPassword(email: string) {
 		}
 
 		const data = await res.text();
-
 		return data;
 	} catch (error) {
 		console.error("Unexpected error:", error);
