@@ -1,0 +1,59 @@
+/** @format */
+
+.history-chat {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	max-height: 400px;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	transition: all 0.5s ease-in-out;
+}
+
+.history-chat .scroll-anchor {
+	height: 1px;
+}
+/** @format */
+
+.is-loading {
+	width: 50px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	align-self: flex-start;
+
+	margin-left: 25px;
+}
+
+.loading-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background-color: rgb(50, 50, 50);
+	animation: jump infinite linear 1s;
+}
+
+.loading-dot:nth-of-type(1) {
+	animation-delay: 100ms;
+}
+
+.loading-dot:nth-of-type(2) {
+	animation-delay: 200ms;
+}
+
+.loading-dot:nth-of-type(3) {
+	animation-delay: 300ms;
+}
+
+@keyframes jump {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(5px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}

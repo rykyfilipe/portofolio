@@ -94,3 +94,19 @@ body {
 	text-decoration: underline;
 	cursor: pointer;
 }
+
+.message {
+	padding: 10px;
+	margin-top: 10px;
+	border-radius: 4px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.message.error {
+	color: #721c24;
+}
+
+.message.success {
+	color: #155724;
+}

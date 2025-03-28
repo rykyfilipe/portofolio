@@ -1,0 +1,44 @@
+/** @format */
+
+.ai-chat,
+.user-chat {
+	height: auto;
+	max-width: 80%;
+	display: flex;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	white-space: pre-wrap;
+	border-radius: 20px;
+	margin-top: 15px;
+	padding: 10px 15px;
+
+}
+
+.message {
+	width: fit-content;
+	max-width: 500px;
+	border-radius: 30px;
+	padding: 10px 20px;
+	display: flex;
+
+}
+
+.ai-chat {
+	align-self: flex-start;
+	margin-left: 10px;
+}
+
+.user-chat {
+	align-self: flex-end;
+	margin-right: 10px;
+}
+
+.user-chat .message {
+	background-color: rgb(225, 224, 222);
+	box-shadow: inset 5px 3px 12px rgb(183, 186, 253);
+}
+
+.ai-chat .message {
+	background-color: rgb(225, 224, 222);
+	box-shadow: inset 5px 3px 12px rgb(133, 216, 157);
+}

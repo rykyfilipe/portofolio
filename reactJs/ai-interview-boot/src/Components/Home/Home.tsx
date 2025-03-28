@@ -1,30 +1,29 @@
 /** @format */
 
-import React, { useState, useEffect, useRef, FormEvent } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import styles from "./Home.module.css";
-import sendIcon from "../../assets/send-icon.svg";
-import { fetchAiResponse, ChatMessage, startChat } from "./utils"; // Importăm funcțiile de utilitate
-import { v4 as uuidv4 } from "uuid"; // Importăm uuid pentru a genera chei unice
+import { fetchAiResponse, ChatMessage, startChat } from "../utils";
+import { v4 as uuidv4 } from "uuid";
+import ChatHistory from "./../ChatHistory/ChatHistory";
+import ChatForm from "./../ChatForm/ChatForm";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
 	const [message, setMessage] = useState<string>("");
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
-	const inputRef = useRef<HTMLInputElement>(null);
-	const chatContainerRef = useRef<HTMLDivElement>(null);
-
+	const navigate = useNavigate();
 	let go = true;
+	navigate("/", { replace: true });
 
-	// Efect pentru a trimite mesajul inițial de la AI doar o dată
 	useEffect(() => {
 		const fetchData = async () => {
-			// Asigură-te că mesajul inițial de la AI este trimis doar o dată
 			const data = await startChat();
 			if (go) {
 				setChatMessages((prev) => [
 					...prev,
 					{
-						id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
+						id: uuidv4(),
 						text: data.message,
 						sender: "ai",
 						timestamp: new Date().toISOString(),
@@ -34,10 +33,9 @@ const Home: React.FC = () => {
 			}
 		};
 
-		fetchData(); // Se va executa doar când chatMessages este gol
-	}, []); // Depinde de chatMessages, dar se va executa doar când este gol
+		fetchData();
+	}, []);
 
-	// Funcția pentru trimiterea mesajului
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -47,9 +45,8 @@ const Home: React.FC = () => {
 		setMessage("");
 		setIsLoading(true);
 
-		// Mesajul utilizatorului
 		const userMessage: ChatMessage = {
-			id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
+			id: uuidv4(),
 			text: trimmedMessage,
 			sender: "user",
 			timestamp: new Date().toISOString(),
@@ -58,93 +55,40 @@ const Home: React.FC = () => {
 		setChatMessages((prev) => [...prev, userMessage]);
 
 		try {
-			// Răspunsul de la AI pentru mesajul utilizatorului
 			const data = await fetchAiResponse(trimmedMessage);
 
 			const aiMessage: ChatMessage = {
-				id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
+				id: uuidv4(),
 				text: data.message,
 				sender: "ai",
 				timestamp: new Date().toISOString(),
 			};
 
-			// Adăugăm răspunsul de la AI
 			setChatMessages((prev) => [...prev, aiMessage]);
 		} catch (error) {
 			const errorMessage: ChatMessage = {
-				id: uuidv4(), // Folosește un ID unic pentru fiecare mesaj
+				id: uuidv4(),
 				text: "Sorry, something went wrong. Please try again.",
 				sender: "ai",
 				timestamp: new Date().toISOString(),
 			};
 
-			// Adaugă mesaj de eroare
 			setChatMessages((prev) => [...prev, errorMessage]);
 		} finally {
 			setIsLoading(false);
-			inputRef.current?.focus();
 		}
 	};
-
-	// Efect pentru scroll automat
-	useEffect(() => {
-		if (chatContainerRef.current) {
-			chatContainerRef.current.scrollTop =
-				chatContainerRef.current.scrollHeight;
-		}
-	}, [chatMessages]);
 
 	return (
 		<div className={styles["chat-container"]}>
 			<h1>AI interviewer</h1>
-
-			<div
-				ref={chatContainerRef}
-				className={styles["history-chat"]}
-				style={{ overflowY: "auto", maxHeight: "400px" }}>
-				{chatMessages.map((chat) => (
-					<div
-						key={chat.id}
-						className={
-							chat.sender === "user" ? styles["user-chat"] : styles["ai-chat"]
-						}>
-						<div className={styles["message"]}>{chat.text}</div>
-					</div>
-				))}
-
-				{isLoading && (
-					<div className={styles["ai-chat"]}>
-						<div className={styles["message"]}>
-							<strong>AI:</strong>
-							<div className={styles["is-loading"]}>
-								<div className={styles["loading-dot"]}></div>
-								<div className={styles["loading-dot"]}></div>
-								<div className={styles["loading-dot"]}></div>
-							</div>
-						</div>
-					</div>
-				)}
-			</div>
-
-			<form className={styles["chat-form"]} onSubmit={handleSubmit}>
-				<div className={styles["input"]}>
-					<input
-						type='text'
-						className={styles["input-bar"]}
-						value={message}
-						onChange={(e) => setMessage(e.target.value)}
-						ref={inputRef}
-						placeholder='Type your message...'
-						disabled={isLoading}
-					/>
-					<button
-						className={styles["input-button"]}
-						type='submit'
-						disabled={isLoading || !message.trim()}>
-						<img src={sendIcon} alt='Send' />
-					</button>
-				</div>
-			</form>
+			<ChatHistory messages={chatMessages} isLoading={isLoading} />
+			<ChatForm
+				message={message}
+				setMessage={setMessage}
+				handleSubmit={handleSubmit}
+				isLoading={isLoading}
+			/>
 		</div>
 	);
 };

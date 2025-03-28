@@ -1,21 +1,47 @@
 /** @format */
 import React, { useState } from "react";
 import styles from "./styles/Login.module.css";
-
 import image from "../../assets/login-image.jpg";
 import { useNavigate } from "react-router-dom";
+import { login } from "./utils";
 
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
+	const [message, setMessage] = useState("");
+	const [messageType, setMessageType] = useState<"error" | "success" | "">(""); // Pentru tipul mesajului
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log("Username:", username);
-		console.log("Password:", password);
+		try {
+			const serverResponse: any = await login(username, password);
+			console.log(serverResponse);
 
-		navigate("/home");
+			if (serverResponse.status === 401) {
+				setMessage(serverResponse.message);
+				setMessageType("error");
+				setTimeout(() => {
+					setMessage("");
+					setMessageType("");
+				}, 2000);
+			} else if (serverResponse.status === 200) {
+				setMessage("Login successful!");
+				setMessageType("success");
+				setTimeout(() => {
+					setMessage("");
+					setMessageType("");
+					navigate("/home", { replace: true });
+				}, 2000);
+			} else {
+				setMessage(`Unexpected response status: ${serverResponse.status}`);
+				setMessageType("error");
+			}
+		} catch (error: any) {
+			setMessage(`Unexpected error occurred: ${error.message}`);
+			setMessageType("error");
+			console.error("Error:", error);
+		}
 	};
 
 	return (
@@ -51,6 +77,13 @@ const Login = () => {
 					Login
 				</button>
 			</div>
+
+			{/* Afișăm mesajul cu stiluri bazate pe tipul său */}
+			{message && (
+				<div className={`${styles["message"]} ${styles[messageType]}`}>
+					{message}
+				</div>
+			)}
 
 			<div className={styles["help-wrapper"]}>
 				<a

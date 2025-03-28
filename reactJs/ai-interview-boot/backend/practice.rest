@@ -1,0 +1,31 @@
+GET http://localhost:3001/users
+
+###
+
+POST http://localhost:3001/user/login
+Content-Type: application/json
+Authorization: Basic password
+
+{
+    "username": "ana"
+}
+
+###
+
+POST http://localhost:3001/user/sign-up
+Content-Type: application/json
+Authorization: Basic password
+
+{
+    "username":"jbajj",
+    "email":"b.ryky.filipe@gmail.com"
+}
+
+###
+
+POST http://localhost:3001/forgot-password
+Content-Type: application/json
+
+{
+    "email":"b.ryky.filipe@gmail.com"
+}

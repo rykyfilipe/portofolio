@@ -1,15 +1,12 @@
 /** @format */
 
-// utils.ts
-
 export interface ChatMessage {
 	id: string;
 	text: string;
 	sender: "user" | "ai";
-	timestamp?: string;
+	timestamp: string;
 }
 
-// Funcție pentru trimiterea mesajului către server
 export const fetchAiResponse = async (message: string) => {
 	try {
 		const response = await fetch("http://localhost:3001/api/message", {
