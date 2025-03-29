@@ -1,4 +1,8 @@
 /** @format */
+
+const url = process.env.BACKEND_URL;
+const port = process.env.PORT;
+
 export function authenticateUser(user: string, password: string): string {
 	var token = user + ":" + password;
 	var hash = btoa(token);
@@ -7,7 +11,7 @@ export function authenticateUser(user: string, password: string): string {
 
 export async function login(username: string, password: string) {
 	try {
-		const res = await fetch("http://localhost:3001/user/login", {
+		const res = await fetch(`${url}:${port}/user/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -44,7 +48,7 @@ export async function signUp(
 	email: string,
 ) {
 	try {
-		const res = await fetch("http://localhost:3001/user/sign-up", {
+		const res = await fetch(`${url}:${port}/user/sign-up`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
