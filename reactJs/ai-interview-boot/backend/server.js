@@ -262,7 +262,9 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3001;
 
 const server = app.listen(PORT, () => {
-	console.log(`✅ Express Server running on http://localhost:${PORT}`);
+	console.log(
+		`✅ Express Server running on ${process.env.BACKEND_URL}:${PORT}`,
+	);
 });
 
 process.on("SIGTERM", () => {

@@ -1,4 +1,4 @@
-POST http://localhost:3001/user
+POST https://ai-interview-boot-production.up.railway.app:3001/user
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3001/user/login
+POST https://ai-interview-boot-production.up.railway.app:3001/user/login
 Content-Type: application/json
 Authorization: Basic password
 
@@ -17,7 +17,7 @@ Authorization: Basic password
 
 ###
 
-POST http://localhost:3001/user/sign-up
+POST https://ai-interview-boot-production.up.railway.app:3001/user/sign-up
 Content-Type: application/json
 Authorization: Basic password
 
@@ -28,7 +28,7 @@ Authorization: Basic password
 
 ###
 
-POST http://localhost:3001/forgot-password
+POST https://ai-interview-boot-production.up.railway.app:3001/forgot-password
 Content-Type: application/json
 
 {
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/forgot-password/change-password
+PATCH https://ai-interview-boot-production.up.railway.app:3001/forgot-password/change-password
 Content-Type: application/json
 Authorization: Basic password
 
