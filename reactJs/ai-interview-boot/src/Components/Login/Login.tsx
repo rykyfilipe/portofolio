@@ -88,7 +88,7 @@ const Login = () => {
 			<div className={styles["help-wrapper"]}>
 				<a
 					onClick={() => {
-						navigate("/forgot-password");
+						navigate("/login/forgot-password");
 					}}>
 					Forgot password?
 				</a>

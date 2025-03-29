@@ -29,3 +29,9 @@ Content-Type: application/json
 {
     "email":"b.ryky.filipe@gmail.com"
 }
+
+###
+
+GET http://localhost:3001/forgot-password/chamge-password
+Content-Type: application/json
+email: b.ryky.filipe@gmail.com

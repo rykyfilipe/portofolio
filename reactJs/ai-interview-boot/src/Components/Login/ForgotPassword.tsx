@@ -35,14 +35,15 @@ const ForgotPassword: React.FC = () => {
 		}
 	};
 
-	const verifyCode = () => {
+	const verifyCode = async () => {
 		if (!userCode.trim()) {
 			setMessage("Please enter the verification code");
 			return;
 		}
 
 		if (code === userCode) {
-			navigate("/change-password", { replace: true });
+			localStorage.setItem("email",email);
+			navigate("/forgot-password/change-password", { replace: true });
 		} else {
 			setMessage("Invalid verification code!");
 		}
@@ -52,6 +53,8 @@ const ForgotPassword: React.FC = () => {
 		setCode(null);
 		setUserCode("");
 		setMessage("");
+		setEmail("");
+		setSent(0);
 	};
 
 	return (
@@ -105,7 +108,7 @@ const ForgotPassword: React.FC = () => {
 							value={userCode}
 							onChange={(e) => setUserCode(e.target.value)}
 						/>
-						<button className={styles.button} onClick={verifyCode}>
+						<button className={styles.verifyButton} onClick={verifyCode}>
 							Verify
 						</button>
 					</div>
@@ -148,7 +151,7 @@ const TimerComponent: React.FC<TimerComponentProps> = ({
 		}, 1000);
 
 		return () => clearInterval(intervalId);
-	}, []);
+	}, [timer]);
 
 	const handleResendCode = async () => {
 		setIsResending(true);
@@ -162,15 +165,15 @@ const TimerComponent: React.FC<TimerComponentProps> = ({
 			{timer !== 0 ? (
 				<p className={styles.timer}>Codul expiră în: {timer} secunde</p>
 			) : (
-				<div>
+				<div className={styles.buttonsWrapper}>
 					<button
 						onClick={handleResendCode}
-						className={styles.button}
+						className={styles.buttonPrimary}
 						disabled={isResending}>
-						{isResending ? "Se trimite..." : "Trimite cod din nou"}
+						{isResending ? "Sending..." : "Send again"}
 					</button>
 					<button onClick={resetForm} className={styles.buttonSecondary}>
-						Începe din nou
+						Restart
 					</button>
 				</div>
 			)}

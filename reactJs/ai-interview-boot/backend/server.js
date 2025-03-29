@@ -11,7 +11,13 @@ const app = express();
 const conversationHistory = []; // Menține istoricul conversației
 const MAX_HISTORY = 10; // Limităm istoricul pentru performanță
 
-const users = [];
+const users = [
+	{
+		username: "ryky",
+		email: "b.ryky.filipe@gmail.com",
+		password: "12345678",
+	},
+];
 
 // Middleware
 app.use(
@@ -233,7 +239,22 @@ app.post("/forgot-password", (req, res) => {
 		});
 });
 
-// Error handling middleware
+app.get("/forgot-password/chamge-password", (req, res) => {
+	const email = req.headers["email"];
+
+	if (!email) {
+		return res.status(400).send("Email header is missing");
+	}
+
+	const user = users.find((user) => user.email === email);
+
+	if (user) {
+		res.json(user);
+	} else {
+		res.sendStatus(404);
+	}
+});
+
 app.use((err, req, res, next) => {
 	console.error(err.stack);
 	res.status(500).json({

@@ -87,7 +87,6 @@ export async function forgotPassword(email: string) {
 
 		console.log("Status code:", res.status);
 
-		// Verificăm răspunsul
 		if (!res.ok) {
 			if (res.status === 400) {
 				return { status: 400, message: "Email is required!" };
@@ -99,9 +98,17 @@ export async function forgotPassword(email: string) {
 		}
 
 		const data = await res.text();
-		return data;
 	} catch (error) {
 		console.error("Unexpected error:", error);
 		throw error;
 	}
 }
+
+export const changePassword = async (newPassword: string) => {};
+
+export const loadResurces = () => {
+	const data = localStorage.getItem("email");
+	if (data) return JSON.parse(data);
+
+	return;
+};

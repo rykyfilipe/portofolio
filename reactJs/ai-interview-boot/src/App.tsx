@@ -4,6 +4,7 @@ import Login from "./Components/Login/Login";
 import Home from "./Components/Home/Home";
 import ForgotPassword from "./Components/Login/ForgotPassword";
 import SignUp from "./Components/Login/SignUp";
+import ChangePassword from "./Components/Login/ChangePassword";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -13,7 +14,11 @@ function App() {
 				<Route path='/home' element={<Home />} />
 				<Route path='/' element={<Login />} />
 				<Route path='/sign-up' element={<SignUp />} />
-				<Route path='/forgot-password' element={<ForgotPassword />} />
+				<Route path='/login/forgot-password' element={<ForgotPassword />} />
+				<Route
+					path='/forgot-password/change-password'
+					element={<ChangePassword />}
+				/>
 			</Routes>
 		</Router>
 	);
