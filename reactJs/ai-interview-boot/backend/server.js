@@ -15,7 +15,7 @@ const users = [];
 
 app.use(
 	cors({
-		origin: process.env.FRONTEND_URL || "http://localhost:5173",
+		origin: process.env.BACKEND_URL || "http://localhost:5173",
 		methods: ["GET", "POST", "PATCH"],
 		allowedHeaders: ["Content-Type", "Authorization"],
 	}),
