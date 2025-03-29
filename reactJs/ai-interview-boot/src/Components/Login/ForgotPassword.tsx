@@ -35,14 +35,14 @@ const ForgotPassword: React.FC = () => {
 		}
 	};
 
-	const verifyCode = async () => {
+	const verifyCode = () => {
 		if (!userCode.trim()) {
 			setMessage("Please enter the verification code");
 			return;
 		}
 
 		if (code === userCode) {
-			localStorage.setItem("email",email);
+			localStorage.setItem("email", email);
 			navigate("/forgot-password/change-password", { replace: true });
 		} else {
 			setMessage("Invalid verification code!");

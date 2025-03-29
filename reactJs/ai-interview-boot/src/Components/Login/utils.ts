@@ -98,17 +98,62 @@ export async function forgotPassword(email: string) {
 		}
 
 		const data = await res.text();
+		return data;
 	} catch (error) {
 		console.error("Unexpected error:", error);
 		throw error;
 	}
 }
 
-export const changePassword = async (newPassword: string) => {};
+export const changePassword = async (newPassword: string, username: string) => {
+	try {
+		const res = await fetch(
+			"http://localhost:3001/forgot-password/change-password",
+			{
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: authenticateUser(username, newPassword),
+				},
+				body: JSON.stringify({ username }),
+			},
+		);
+
+		if (!res.ok) {
+			throw console.error(res);
+		} else {
+			const data = await res.text();
+			return data;
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const getUser = async (email: string) => {
+	try {
+		const res = await fetch("http://localhost:3001/user", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ email }),
+		});
+
+		if (!res.ok) {
+			throw "Get user error";
+		} else {
+			const data = await res.json();
+			return data;
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 export const loadResurces = () => {
 	const data = localStorage.getItem("email");
-	if (data) return JSON.parse(data);
+	if (data) return data;
 
 	return;
 };

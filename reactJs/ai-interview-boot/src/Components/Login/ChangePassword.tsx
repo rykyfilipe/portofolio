@@ -2,18 +2,15 @@
 
 import { useState, useRef, useEffect } from "react";
 import styles from "./styles/SignUp.module.css";
-import { loadResurces } from "./utils";
+import { getUser, loadResurces, changePassword } from "./utils";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
 	const [password, setPassword] = useState("");
 	const [validator, setValidator] = useState("");
 	const inputValidator = useRef<HTMLInputElement>(null);
-	let email;
-
-	useEffect(() => {
-		email = loadResurces();
-		console.log(email);
-	}, []);
+	let email: string;
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (inputValidator.current) {
@@ -27,9 +24,28 @@ const ChangePassword = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-
 		if (password != validator) {
 			return;
+		}
+		const data = loadResurces();
+		if (data) email = data;
+
+		try {
+			const user = await getUser(email);
+
+			if (!user) {
+				throw "Fetching error!";
+			} else {
+				const username = user.username;
+				const res = await changePassword(password, username);
+				if (res) {
+					setPassword("");
+					setValidator("");
+					navigate("/login", { replace: true });
+				}
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	};
 

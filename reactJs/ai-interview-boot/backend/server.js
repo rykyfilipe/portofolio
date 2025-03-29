@@ -8,8 +8,8 @@ import nodemailer from "nodemailer";
 dotenv.config();
 
 const app = express();
-const conversationHistory = []; // Menține istoricul conversației
-const MAX_HISTORY = 10; // Limităm istoricul pentru performanță
+const conversationHistory = [];
+const MAX_HISTORY = 10; 
 
 const users = [
 	{
@@ -19,11 +19,10 @@ const users = [
 	},
 ];
 
-// Middleware
 app.use(
 	cors({
 		origin: process.env.FRONTEND_URL || "http://localhost:5173",
-		methods: ["GET", "POST"],
+		methods: ["GET", "POST", "PATCH"],
 		allowedHeaders: ["Content-Type", "Authorization"],
 	}),
 );
@@ -31,7 +30,6 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Funcție asincronă pentru a obține răspunsul de la Gemini
 const askAi = async (userMessage) => {
 	const apiKey = "AIzaSyAQDuPur9WK9B-LHI7xrhdWwC8kxDXWNkA"; // API Key din .env
 	const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
@@ -103,7 +101,6 @@ async function sendEmail(to, subject, message) {
 	});
 }
 
-// Route handlers
 app.get("/hello", async (req, res) => {
 	try {
 		const aiResponse =
@@ -124,7 +121,6 @@ app.get("/hello", async (req, res) => {
 	}
 });
 
-// Message handling endpoint
 app.post("/api/message", async (req, res) => {
 	const { message } = req.body;
 
@@ -172,8 +168,20 @@ app.post("/user/login", (req, res) => {
 	}
 });
 
-app.get("/users", (req, res) => {
-	res.json(users);
+app.post("/user", (req, res) => {
+	const email = req.body.email;
+
+	if (email) {
+		const user = users.find((user) => user.email === email);
+
+		if (user) {
+			return res.status(200).json(user);
+		} else {
+			return res.status(404).send("User not found!");
+		}
+	} else {
+		return res.status(400).send("Email is missing!");
+	}
 });
 
 app.post("/user/sign-up", (req, res) => {
@@ -239,19 +247,25 @@ app.post("/forgot-password", (req, res) => {
 		});
 });
 
-app.get("/forgot-password/chamge-password", (req, res) => {
-	const email = req.headers["email"];
+app.patch("/forgot-password/change-password", (req, res) => {
+	const username = req.body.username;
+	const password = req.headers.authorization;
 
-	if (!email) {
-		return res.status(400).send("Email header is missing");
+	if (!username) {
+		return res.status(400).send("Username is missing");
 	}
 
-	const user = users.find((user) => user.email === email);
+	if (!password) {
+		return res.status(400).send("Password is missing");
+	}
+
+	const user = users.find((user) => user.username === username);
 
 	if (user) {
-		res.json(user);
+		user.password = password;
+		res.status(200).send("Password updated successfully");
 	} else {
-		res.sendStatus(404);
+		res.status(404).send("User not found");
 	}
 });
 

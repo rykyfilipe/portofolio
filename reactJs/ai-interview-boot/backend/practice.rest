@@ -1,4 +1,9 @@
-GET http://localhost:3001/users
+POST http://localhost:3001/user
+Content-Type: application/json
+
+{
+    "email":"b.ryky.filipe@gmail.com"
+}
 
 ###
 
@@ -32,6 +37,10 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3001/forgot-password/chamge-password
+PATCH http://localhost:3001/forgot-password/change-password
 Content-Type: application/json
-email: b.ryky.filipe@gmail.com
+Authorization: Basic password
+
+{
+    "email": "b.ryky.filipe@gmail.com"
+}

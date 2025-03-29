@@ -6,15 +6,12 @@ import { fetchAiResponse, ChatMessage, startChat } from "../utils";
 import { v4 as uuidv4 } from "uuid";
 import ChatHistory from "./../ChatHistory/ChatHistory";
 import ChatForm from "./../ChatForm/ChatForm";
-import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
 	const [message, setMessage] = useState<string>("");
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
-	const navigate = useNavigate();
 	let go = true;
-	navigate("/", { replace: true });
 
 	useEffect(() => {
 		const fetchData = async () => {
