@@ -1,0 +1,162 @@
+/** @format */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+
+	background-color: #eaeaea;
+	transition: background 1s ease-in-out;
+}
+
+.square {
+	border-radius: 40px;
+}
+
+.circle {
+	border-radius: 50%;
+}
+
+.light {
+	background-color: #eaeaea;
+
+	box-shadow: inset 4px 4px 12px rgb(170, 168, 170), inset -4px -4px 12px white;
+	color: #26282b;
+}
+
+.light-out {
+	background-color: #eaeaea;
+
+	box-shadow: inset 5px 5px 20px 0px #cecece, inset -5px -5px 20px 20px #eaeaea,
+		-10px -10px 10px rgb(255, 255, 255), 4px 4px 20px rgb(89, 89, 89);
+	color: #26282b;
+}
+
+.dark-out {
+	background-color: #26282b;
+
+	box-shadow: inset 5px 5px 20px 0px #2a2a2b, inset -5px -5px 20px 20px #2a2a2b,
+		-10px -10px 10px rgb(57, 57, 57), 4px 4px 20px black;
+	color: #eaeaea;
+}
+
+.dark {
+	background-color: #26282b;
+
+	box-shadow: inset 4px 4px 12px rgb(22, 22, 22),
+		inset -4px -4px 12px rgb(69, 69, 69);
+	color: #eaeaea;
+}
+
+.wraper {
+	position: absolute;
+	top: 0;
+
+	width: 100%;
+	height: fit-content;
+
+	display: flex;
+	justify-content: flex-end;
+}
+
+.switch-container {
+	width: 50px;
+	height: 20px;
+
+	margin: 20px;
+
+	border-radius: 20px;
+	border: 2px solid rgb(86, 84, 84);
+
+	background-color: #eaeaea;
+
+	display: flex;
+	align-items: center;
+	transition: all 1s ease-in-out;
+}
+
+.button {
+	width: 15px;
+	height: 15px;
+
+	border-radius: 50%;
+
+	background-color: #26282b;
+
+	margin-left: 2px;
+	margin-right: 2px;
+
+	transition: transform 1s ease-in-out;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.on {
+	transform: translateX(180%);
+	background-color: #eaeaea;
+}
+
+.dark-color {
+	background-color: #26282b;
+}
+
+.light-switch {
+	background-color: #26282b;
+	border: 2px solid #eaeaea;
+}
+
+.scroller {
+	height: 300px;
+	width: 300px;
+
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	gap: 50px;
+	padding: 10px;
+
+	border-radius: 20px;
+	padding: 30px;
+}
+.scroller::-webkit-scrollbar {
+	display: none;
+}
+
+.scroll-item {
+	min-width: 100%;
+	scroll-snap-align: center;
+
+	transition: all 1s ease-in-out;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-size: 17px;
+}
+
+.prev,
+.next {
+	border: none;
+	background-color: #eaeaea;
+	cursor: pointer;
+	background: transparent;
+}
+
+.circle:last-of-type {
+	margin-left: 10px;
+}
